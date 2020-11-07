@@ -1,0 +1,41 @@
+<div class="month-grid">
+    <button mat-button (click)="prevMonth()"><mat-icon>navigate_before</mat-icon></button>
+    {{ monthName | uppercase }} {{selectedDate.year}}
+    <button mat-button (click)="nextMonth()"><mat-icon>navigate_next</mat-icon></button>
+  </div>
+  <div class="days-grid">
+    <div *ngFor="let nameplate of nameplates; let index">
+      {{ nameplate }}
+    </div>
+  </div>
+  <div class="callendar-grid">
+    <callendar-day
+      [day]="day"
+      [disable]= true
+      class="day offset"
+      *ngFor="let day of startingOffsetDays; let index"
+    >
+    </callendar-day>
+
+    <callendar-day
+      [day]="day"
+      class="day"
+      [class.current]="isCurrent(day)"
+      *ngFor="let day of days; let index"
+      (selectOption)="selectOption($event)"
+    >
+    </callendar-day>
+
+    <callendar-day
+      [day]="day"
+      class="day offset"
+      [disable]= true
+      *ngFor="let day of endingOffsetDays; let index"
+    >
+    </callendar-day>
+  </div>
+
+  <div class="buttons">
+    <button class="button" mat-raised-button color="basic" (click)="closeDialog()">{{'GENERAL.CANCEL' | translate}}</button>
+    <button class="button" mat-raised-button color="primary" (click)="saveAllDates()">{{'GENERAL.SAVE' | translate}}</button>
+  </div>

@@ -1,0 +1,9 @@
+<button class="dayButton" mat-raised-button [color]="day.color" [disabled] ="disable" [matMenuTriggerFor]="content" >
+  <p class="dayLabel">{{day.id}}</p>
+  <p class="option">{{day.dateType}}</p>
+</button>
+
+
+<mat-menu #content="matMenu" >
+    <button *ngFor="let type of dateType" mat-menu-item (click)="selectOne(type, day)">{{type}}</button>
+  </mat-menu>

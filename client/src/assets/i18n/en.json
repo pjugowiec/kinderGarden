@@ -1,0 +1,77 @@
+{
+    "GENERAL": {
+        "VERSION": "v1.0",
+        "TITLE": "Card Index Generator",
+        "CANCEL": "Cancel",
+        "DELETE": "Delete",
+        "ADD": "Add",
+        "LOGOUT": "Logout",
+        "EDIT": "Edit",
+        "CLOSE": "Close",
+        "SAVE": "Save",
+        "FIND_EMPLOYEE": "Find employee",
+        "LANGUAGE": "Language",
+        "LANG_EN": "English",
+        "LANG_PL": "Polish",
+        "COMMON_ERROR":{
+            "FIELD_REQUIRED": "Field required"
+        }
+    },
+    "LOGIN_PANEL": {
+        "COPYRIGHTS": "PM. 6",
+        "TITLE_LOGIN": "Login panel",
+        "USERNAME": "Username",
+        "PASSWORD": "Password",
+        "FORGOT_PASSWORD": "Forgot password?",
+        "LOGIN": "Login"
+    },
+    "EMPLOYEE_PAGE": {
+        "TITLE": "Page with employee",
+        "TABLE": {
+            "LP": "Lp",
+            "NAME": "Initials",
+            "POSITION": "Position",
+            "REGULAR_POST": "Regular post",
+            "ACTIONS": "Actions",
+            "GENERATE_EXCEL_FOR_ALL": "Generate cards",
+            "GENERATE_EXCEL_FOR_ONE": "Generate card",
+            "CALENDAR": "Calendar"
+        },
+        "CONFIRM_DELETE": {
+            "DELETE_EMPLOYEE": "Delete employee",
+            "DELETE_EMPLOYEE_MESSAGE": "Are you sure to delete employee?",
+            "ERROR": "Problem with delete employee!",
+            "SUCCESS": "Employee delete!"
+        },
+        "ADD_EMPLOYEE": {
+            "TITLE": "Adding employee",
+            "NAME": "Initials",
+            "REGULAR_POST": "Regular post",
+            "COUNT_OF_VACATION": "Count of vacation",
+            "COUNT_OF_CHILDREN_CARE": "Count of children care",
+            "POSITION": "Position",
+            "SUCCESS": "Employee added!",
+            "ERROR": "Problem with adding employee!"
+        },
+        "EDIT_EMPLOYEE": {
+            "TITLE": "Edit employee",
+            "NAME": "Initials",
+            "REGULAR_POST": "Regular post",
+            "COUNT_OF_VACATION": "Count of vacation",
+            "COUNT_OF_CHILDREN_CARE": "Count of children care",
+            "POSITION": "Position",
+            "SUCCESS": "Employee edited!",
+            "ERROR": "Problem with edit employee!"
+        },
+        "ERRORS": {
+            "ERROR_LOAD_DATA": "Problem with load data!"
+        }
+    },
+    "CALENDAR":{
+        "DELETE_DATE":{
+            "TITLE": "Deleting date",
+            "DESCRIPTION": "Are you sure do you want delete this date?",
+            "ERROR": "Problem with delete date, try agin!"
+        }
+    }
+}
