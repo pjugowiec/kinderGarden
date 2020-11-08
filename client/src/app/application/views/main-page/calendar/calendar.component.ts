@@ -91,7 +91,7 @@ export class CalendarComponent implements OnInit {
             day: new Date().getDate(),
             month: new Date().getMonth(),
             year: new Date().getFullYear()
-        }
+        };
 
         this._selectedDate = this._todayDate;
         this._selectedDate.day = 1;
@@ -101,14 +101,14 @@ export class CalendarComponent implements OnInit {
         this._datesService.queryGet(this._employeeId).subscribe(response => {
             response.forEach(value => {
                 this._days.forEach(day => {
-                    if (day.date.day == value.day && day.date.month == value.month && day.date.year == value.year) {
-                        if (value.dateType == "Sunday") {
-                            day.color = "warn";
-                        } else if (value.dateType == "Saturday") {
-                            day.color = "success";
+                    if (day.date.day === value.day && day.date.month === value.month && day.date.year === value.year) {
+                        if (value.dateType === 'Sunday') {
+                            day.color = 'warn';
+                        } else if (value.dateType === 'Saturday') {
+                            day.color = 'success';
                         } else {
                             day.dateType = value.dateType;
-                            day.color = "primary";
+                            day.color = 'primary';
                         }
                         day.idFromData = value.id;
                     }
@@ -156,12 +156,12 @@ export class CalendarComponent implements OnInit {
     }
 
     setDays(date: ParsedDate, range: number, descending: boolean = false) {
-        if (range <= 0) return null;
+        if (range <= 0) { return null; }
         const arr = descending ? [...Array(range).keys()].reverse() : [...Array(range).keys()];
 
         return arr.map(x => {
             const queryDay = descending ? date.day - x : date.day + x;
-            const queryDate: ParsedDate = { year: date.year, month: date.month, day: queryDay }
+            const queryDate: ParsedDate = { year: date.year, month: date.month, day: queryDay };
             const dateToCheck: Date = new Date(date.year, date.month, queryDay);
             return {
                 id: queryDate.day,
@@ -169,7 +169,7 @@ export class CalendarComponent implements OnInit {
                 color: '',
                 dateType: '',
                 idFromData: 0
-            }
+            };
         });
     }
 
@@ -198,18 +198,17 @@ export class CalendarComponent implements OnInit {
     }
 
     selectOption(selected) {
-        console.log(selected)
-        if(selected.type == 'Delete') {
+        console.log(selected);
+        if (selected.type == 'Delete') {
             this._days.map(day => {
-                if(selected.date == day.date)
-                {
+                if (selected.date == day.date) {
                     day.color = '';
                     day.dateType = '';
                 }
             });
         } else {
             this._days.map(day => {
-                if(selected.date == day.date) 
+                if (selected.date == day.date)
                 {
                     day.color = 'primary';
                     day.dateType = selected.type;
@@ -223,13 +222,19 @@ export class CalendarComponent implements OnInit {
             date: newDate,
             dateType: selected.type,
             employeeDto: {
-                id: this._employeeId
+                id: this._employeeId,
+                name: null,
+                lastName: null,
+                regularPost: null,
+                countOfChildrenCare: 0,
+                countOfVacation: 0,
+                position: null
             }
         };
 
         this._datesToSend.push(dateToSend);
 
-        
+
 
     }
 

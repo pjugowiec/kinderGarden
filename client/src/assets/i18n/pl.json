@@ -29,7 +29,8 @@
         "TITLE": "Strona z pracownikami",
         "TABLE": {
             "LP": "Lp",
-            "NAME": "Inicjały",
+            "NAME": "Imię",
+            "LAST_NAME": "Nazwisko",
             "POSITION": "Stanowisko",
             "REGULAR_POST": "Wymiar Etatu",
             "ACTIONS": "Akcje",
@@ -45,7 +46,8 @@
         },
         "ADD_EMPLOYEE": {
             "TITLE": "Dodawanie pracownika",
-            "NAME": "Inicjały",
+            "NAME": "Imię",
+            "LAST_NAME": "Nazwisko",
             "REGULAR_POST": "Wymiar etatu",
             "COUNT_OF_VACATION": "Dni urlopowe",
             "COUNT_OF_CHILDREN_CARE": "Dni opieki",
@@ -55,7 +57,8 @@
         },
         "EDIT_EMPLOYEE": {
             "TITLE": "Edycja danych pracownika",
-            "NAME": "Inicjały",
+            "NAME": "Imię",
+            "LAST_NAME": "Nazwisko",
             "REGULAR_POST": "Wymiar etatu",
             "COUNT_OF_VACATION": "Dni urlopowe",
             "COUNT_OF_CHILDREN_CARE": "Dni opieki",

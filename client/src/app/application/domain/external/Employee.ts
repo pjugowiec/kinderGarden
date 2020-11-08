@@ -1,8 +1,9 @@
-export class Employee {
+export interface Employee {
     id: number;
-    name?: String;
-    regularPost?: String;
-    countOfVacation?: number;
-    countOfChildrenCare?: number;
-    position?: String;
+    name: string;
+    lastName: string;
+    regularPost: string;
+    countOfVacation: number;
+    countOfChildrenCare: number;
+    position: string;
 }

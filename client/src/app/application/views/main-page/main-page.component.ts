@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatSnackBar, MatSort, MatTableDataSource } from '@angular/material';
 import { TranslateService } from '@ngx-translate/core';
 import { FileSaverService } from 'ngx-filesaver';
-import { take } from "rxjs/operators";
+import { take } from 'rxjs/operators';
 import { EmployeeRestSerivce } from '../../services/rest/employee-rest.service';
 import { GenerateExcelRestService } from '../../services/rest/generate-excel-rest.service';
 import { ConfirmDialogComponent } from '../general/confirm-dialog/confirm-dialog.component';
@@ -19,7 +19,7 @@ import { InputDeatilsComponent } from './input-deatils/input-deatils.component';
 })
 export class MainPageComponent implements OnInit {
     @ViewChild(MatSort, { static: true }) sort: MatSort;
-    private _displayedColumns: string[] = ['lp', 'name', 'position', 'regularPost', 'calendar', 'generateExcel', 'action'];
+    private _displayedColumns: string[] = ['lp', 'name', 'lastName', 'position', 'regularPost', 'action'];
     private _dataSource: MatTableDataSource<any>;
 
     constructor(
@@ -39,6 +39,7 @@ export class MainPageComponent implements OnInit {
     get dataSource() {
         return this._dataSource;
     }
+    
     ngOnInit() {
         this.getData();
 
@@ -105,7 +106,6 @@ export class MainPageComponent implements OnInit {
 
     addEmployee() {
         this._dialog.open(AddEmployeeComponent).afterClosed().subscribe(response => {
-            console.log(response)
             this.getData();
         });
     }
@@ -115,7 +115,7 @@ export class MainPageComponent implements OnInit {
         const listOfid: Array<number> = Array<number>();
         dataSource.data.forEach(element => {
             listOfid.push(element.id);
-        })
+        });
 
     }
 

@@ -19,6 +19,12 @@
             <td mat-cell *matCellDef="let row" (click)="employeDetails(row.id)"> {{row.name}} </td>
         </ng-container>
 
+        <!-- Last name -->
+        <ng-container matColumnDef="lastName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'EMPLOYEE_PAGE.TABLE.LAST_NAME' | translate}}</th>
+            <td mat-cell *matCellDef="let row" (click)="employeDetails(row.id)"> {{row.lastName}} </td>
+        </ng-container>
+
         <!-- Position -->
         <ng-container matColumnDef="position">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'EMPLOYEE_PAGE.TABLE.POSITION' | translate}}</th>
@@ -33,34 +39,24 @@
             </td>
         </ng-container>
 
-        <!-- Action Column -->
-        <ng-container matColumnDef="calendar">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
-            <td mat-cell *matCellDef="let row">
-                <button class="buttonCalendar" mat-raised-button
-                    (click)="openCalendar(row.id)">{{'EMPLOYEE_PAGE.TABLE.CALENDAR' | translate}}</button>
-            </td>
-        </ng-container>
-        <!--  -->
-        <!-- Generate Excel Column -->
-        <ng-container matColumnDef="generateExcel">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> 
-                <!-- <button mat-raised-button color="primary" (click)="generateAll(dataSource)">{{'EMPLOYEE_PAGE.TABLE.GENERATE_EXCEL_FOR_ALL' | translate}}</button> -->
-            </th>
-            <td mat-cell *matCellDef="let row" fxLayoutAlign="center">
-                <button class="buttonGenerate" mat-raised-button
-                    (click)="generateExcel(row.id, row.name)">{{'EMPLOYEE_PAGE.TABLE.GENERATE_EXCEL_FOR_ONE' | translate}}</button>
-            </td>
-        </ng-container>
-        <!-- Delete employee -->
         <ng-container matColumnDef="action">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                <button class="buttonAdd" mat-raised-button color="primary"
-                    (click)="addEmployee()">{{'GENERAL.ADD' | translate}}</button>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="action">
+                <button mat-icon-button>
+                    <mat-icon (click)="addEmployee()">add</mat-icon>
+                </button>
             </th>
             <td mat-cell *matCellDef="let row">
-                <button class="buttonRemove" mat-raised-button
-                    (click)="deleteEmployee(row.id)">{{'GENERAL.DELETE' | translate}}</button>
+                <button mat-icon-button>
+                    <mat-icon (click)="openCalendar(row.id)">calendar_today</mat-icon>
+                </button>
+
+                <button mat-icon-button>
+                    <mat-icon (click)="generateExcel(row.id)">cloud_download</mat-icon>
+                </button>
+
+                <button mat-icon-button color="warn">
+                    <mat-icon (click)="deleteEmployee(row.id)">delete</mat-icon>
+                </button>
             </td>
         </ng-container>
 

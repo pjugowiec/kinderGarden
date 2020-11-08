@@ -128,6 +128,7 @@ export class EmployeeDetailsComponent implements OnInit {
     colectData(): Employee {
         const employee: Employee = {
             name: this._employeeForm.get('name').value,
+            lastName: this._employeeForm.get('lastName').value,
             regularPost: this._employeeForm.get('regularPost').value,
             id: null,
             countOfVacation: this._employeeForm.get('countOfVacation').value,

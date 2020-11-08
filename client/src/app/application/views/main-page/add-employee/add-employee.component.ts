@@ -12,7 +12,7 @@ import { EmployeeRestSerivce } from 'src/app/application/services/rest/employee-
 })
 export class AddEmployeeComponent implements OnInit {
     private _employeeForm: FormGroup;
-    private _regularPost: Array<String> = ['1/2','3/4', '1'];
+    private _regularPost: Array<string> = ['1/2','3/4', '1'];
 
     constructor(
         private _dialogRef: MatDialogRef<AddEmployeeComponent>,
@@ -29,6 +29,7 @@ export class AddEmployeeComponent implements OnInit {
     createForm() {
         this._employeeForm = this._builder.group({
             name: ['', [Validators.required, Validators.maxLength(50), Validators.minLength(1)]],
+            lastName: ['', [Validators.required, Validators.maxLength(50), Validators.minLength(1)]],
             regularPost: ['', Validators.required],
             countOfVacation: ['', Validators.required],
             countOfChildrenCare: ['', Validators.required],
@@ -51,10 +52,11 @@ export class AddEmployeeComponent implements OnInit {
 
     submitEmployee() {
         this._employeeSerivce.queryPost(this.colectData()).subscribe(
-            (response) => {
+            () => {
                 this._translate.get('EMPLOYEE_PAGE.ADD_EMPLOYEE.SUCCESS').subscribe((res: string) => {
                     this._snackBarService.open(res, 'ok', { duration: 3000 });
                 });
+                this.ngOnInit();
             },
             (error) => {
                 this._translate.get('EMPLOYEE_PAGE.ADD_EMPLOYEE.ERROR').subscribe((res: string) => {
@@ -72,6 +74,7 @@ export class AddEmployeeComponent implements OnInit {
 
         const employee: Employee = {
             name: this._employeeForm.get('name').value,
+            lastName: this._employeeForm.get('lastName').value,
             regularPost: this._employeeForm.get('regularPost').value,
             id: null,
             countOfVacation: this._employeeForm.get('countOfVacation').value,
