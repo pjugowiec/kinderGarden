@@ -56,14 +56,13 @@ export class AddEmployeeComponent implements OnInit {
                 this._translate.get('EMPLOYEE_PAGE.ADD_EMPLOYEE.SUCCESS').subscribe((res: string) => {
                     this._snackBarService.open(res, 'ok', { duration: 3000 });
                 });
-                this.ngOnInit();
+                this._dialogRef.close(true);
             },
             (error) => {
                 this._translate.get('EMPLOYEE_PAGE.ADD_EMPLOYEE.ERROR').subscribe((res: string) => {
                     this._snackBarService.open(res, 'ok', { duration: 3000 });
                 });
             });
-        this._dialogRef.close(true);
     }
 
     closeDialog() {

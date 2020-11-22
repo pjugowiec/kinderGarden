@@ -26,8 +26,8 @@ public class GenerateFileContorller {
 
     @PostMapping("/{employeeId}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public ResponseEntity<InputStreamResource> generateFile(@RequestParam FileType fileType, @PathVariable  long employeeId, @RequestParam String name) throws NotFoundException {
-        ByteArrayInputStream in = this.generateFileService.generateExcel(employeeId, name);
+    public ResponseEntity<InputStreamResource> generateFile(@RequestParam FileType fileType, @PathVariable  long employeeId) throws NotFoundException {
+        ByteArrayInputStream in = this.generateFileService.generateExcel(employeeId);
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Disposition", "attachment; filename=customers.xlsx");
 

@@ -27,7 +27,6 @@ public class ExcelService {
         Employee employee = generateExcelDtoInternal.getEmployee();
 
         List<DatesDtoInternal> datesToPrint = new LinkedList<>();
-        System.out.println(datesToPrint);
 
         for(Dates date : generateExcelDtoInternal.getDates()) {
             DatesDtoInternal datesDtoInternal = new DatesDtoInternal();

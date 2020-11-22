@@ -75,6 +75,13 @@
             "TITLE": "Usuwanie daty",
             "DESCRIPTION": "Czy napewno chcesz usunąć tą date?",
             "ERROR": "Problem z usunięciem daty, spróbuj ponownie!"
+        },
+        "SUCCESS_SAVE": "Pomyślnie zapisano!"
+    },
+    "GENERATE": {
+        "EXCEL": {
+            "START_GENERATING": "Rozpoczęto generowanie arkusza",
+            "SUCCESS": "Arkusz wygenerowany"
         }
     }
 }

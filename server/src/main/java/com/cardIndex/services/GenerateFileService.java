@@ -7,6 +7,6 @@ import java.io.FileOutputStream;
 
 public interface GenerateFileService {
 
-    ByteArrayInputStream generateExcel(long employeeId, String name) throws NotFoundException;
+    ByteArrayInputStream generateExcel(long employeeId) throws NotFoundException;
     void generatePDF(long userId);
 }

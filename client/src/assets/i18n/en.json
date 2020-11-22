@@ -72,6 +72,13 @@
             "TITLE": "Deleting date",
             "DESCRIPTION": "Are you sure do you want delete this date?",
             "ERROR": "Problem with delete date, try agin!"
+        },
+        "SUCCESS_SAVE": "Success save!"
+    },
+    "GENERATE": {
+        "EXCEL": {
+            "START_GENERATING": "Start generating excel",
+            "SUCCESS": "Success generate"
         }
     }
 }

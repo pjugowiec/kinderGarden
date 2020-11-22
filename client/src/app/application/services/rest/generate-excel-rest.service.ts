@@ -20,13 +20,12 @@ export class GenerateExcelRestService extends RestService {
         });
     }
 
-    queryGenerateOne(id: number, name: String): Observable<HttpResponse<any>> {
+    queryGenerateOne(id: number): Observable<HttpResponse<any>> {
         const fileType = 'EXCEL';
         return this.request<HttpResponse<any>>({
             url: `${GENERATE_URL}` + '/' + id,
             params: {
-                fileType: fileType,
-                name: name
+                fileType: fileType
             },
             observe: 'response',
             responseType: 'blob',

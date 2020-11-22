@@ -36,7 +36,7 @@ public class GenerateFileServiceImpl implements GenerateFileService {
     }
 
     @Override
-    public ByteArrayInputStream generateExcel(long employeeId, String name) throws  NotFoundException {
+    public ByteArrayInputStream generateExcel(long employeeId) throws  NotFoundException {
         List<Dates> datesToExcel = this.datesRepository.findByEmployeeId(employeeId);
         Optional<Employee> employeeOptional = this.employeeRepository.findById(employeeId);
         List<DatesFree> datesFrees = this.datesFreeRepostiory.findAll();
@@ -48,10 +48,11 @@ public class GenerateFileServiceImpl implements GenerateFileService {
         });
 
         if(employeeOptional.isPresent()){
+            Employee employee = employeeOptional.get();
             GenerateExcelDtoInternal generateExcelDtoInternal = new GenerateExcelDtoInternal();
             generateExcelDtoInternal.setDates(datesToExcel);
-            generateExcelDtoInternal.setEmployee(employeeOptional.get());
-            generateExcelDtoInternal.setNameToPrint(name);
+            generateExcelDtoInternal.setEmployee(employee);
+            generateExcelDtoInternal.setNameToPrint(employee.getName() + " " + employee.getLastName());
 
             try {
                 return this.excelService.generateExcel(generateExcelDtoInternal);

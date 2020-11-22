@@ -81,7 +81,10 @@ public class DatesServiceImpl implements DatesService {
                 });
             });
         }
-        this.datesRepository.saveAll(datesToSave);
+
+        if(datesToSave.size() > 0 ) {
+            this.datesRepository.saveAll(datesToSave);
+        }
     }
 
     @Override

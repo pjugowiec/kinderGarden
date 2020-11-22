@@ -1,10 +1,15 @@
-.title{
+.toolbar{
+  justify-content: center;
+}
+
+.version {
   position: absolute;
-  left: 40%;
+  left: 0;
+  margin-left: 3%;
 }
 
 .settings{
   position: absolute;
   right: 0;
-  margin-right: 5%;
+  margin-right: 3%;
 }
