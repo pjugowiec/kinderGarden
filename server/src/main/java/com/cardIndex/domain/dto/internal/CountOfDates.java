@@ -1,8 +1,12 @@
 package com.cardIndex.domain.dto.internal;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class CountOfDates {
     private int Uw;
     private int Um;

@@ -1,5 +1,4 @@
-
-.background{
+.background {
     height: 100vh;
     // background: url('../../../../../assets/icons/1.jpg');
     overflow: auto;
@@ -7,25 +6,25 @@
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: repeat(12, 1fr);
     grid-template-areas:
-    ". . . . word word word word . . . ."
-    ". . . form form form form form form . . ."
-    ". . . form form form form form form . . ."
-    ". . . form form form form form form . . ."
-    ". . . form form form form form form . . ."
-    ". . . form form form form form form . . ."
-    ". . . . . . . . . . . ."
-    ". . . . copy copy copy copy . . . ."
-    ". . . . . . . . . . . ."
-    ". . . . . . . . . . . ."
-    ". . . . . . . . . . . ."
-    ". . . . . . . . . . . .";
+        ". . . . word word word word . . . ."
+        ". . . form form form form form form . . ."
+        ". . . form form form form form form . . ."
+        ". . . form form form form form form . . ."
+        ". . . form form form form form form . . ."
+        ". . . form form form form form form . . ."
+        ". . . . . . . . . . . ."
+        ". . . . . . . . . . . ."
+        ". . . . copy copy copy copy . . . ."
+        ". . . . . . . . . . . ."
+        ". . . . . . . . . . . ."
+        ". . . . . . . . . . . .";
 }
 
-.copy{
+.copy {
     grid-area: copy;
 }
 
-h1{
+h1 {
     text-align: center;
     font-size: 36px;
     font-weight: bold;
@@ -36,7 +35,7 @@ h1{
     grid-area: word;
 }
 
-h2{
+h2 {
     color: black;
     font-size: 20px;
     font-weight: 500;
@@ -45,36 +44,36 @@ h2{
     letter-spacing: 2px;
 }
 
-.dialog-form{
+.dialog-form {
     width: 34vw;
     margin: 0 auto;
     grid-area: form;
 }
 
-.dialog-form-in{
+.dialog-form-in {
     border-radius: 25px;
     background: darkgrey;
     box-shadow: 0px 35px 44px -22px #090909;
     padding: 20px 40px;
 }
 
-.dialog-form-input-div{
+.dialog-form-input-div {
     position: relative;
 }
 
-.dialog-input{
+.dialog-input {
     width: 100%;
     color: black;
 }
 
-.icon{
+.icon {
     display: inline-block;
     position: absolute;
     right: 12px;
     bottom: 43px;
 }
 
-.text-under-dialog{
+.text-under-dialog {
     font-size: 13px;
     color: #black;
     margin-top: 2vh;
@@ -82,7 +81,7 @@ h2{
     text-transform: none;
 }
 
-.button{
+.button {
     display: block;
     margin: 0 auto;
     padding: 9px 38px;
@@ -100,7 +99,6 @@ h2{
     letter-spacing: 1.5px;
 }
 
-
 .settings {
     background: transparent;
     border: none !important;
@@ -108,28 +106,28 @@ h2{
     color: black;
 }
 
-.lang-menu{
-    background:  rgba(5, 5, 5, 0.8) !important;
+.lang-menu {
+    background: rgba(5, 5, 5, 0.8) !important;
     border: none !important;
 }
-.mat-menu-item{
+.mat-menu-item {
     color: black;
 }
 
-@media (max-width: 1000px){
-    .background{
-        grid-template-columns: repeat(10,1fr);
-        grid-template-rows: repeat(10,1fr);
+@media (max-width: 1000px) {
+    .background {
+        grid-template-columns: repeat(10, 1fr);
+        grid-template-rows: repeat(10, 1fr);
         grid-template-areas:
-        ". . . word word word word . . ."
-        ". . form form form form form form . ."
-        ". . form form form form form form . ."
-        ". . form form form form form form . ."
-        ". . form form form form form form . ."
-        ". . form form form form form form . ."
-        ". . . . . . . . . ."
-        "copy copy copy copy copy copy"
-        ". . . . . . . . . .";
+            ". . . word word word word . . ."
+            ". . form form form form form form . ."
+            ". . form form form form form form . ."
+            ". . form form form form form form . ."
+            ". . form form form form form form . ."
+            ". . form form form form form form . ."
+            ". . . . . . . . . ."
+            "copy copy copy copy copy copy"
+            ". . . . . . . . . .";
     }
     h1 {
         font-size: 27px;
@@ -137,22 +135,22 @@ h2{
         letter-spacing: 3px;
     }
 
-    .dialog-form{
-       width: 100%;
+    .dialog-form {
+        width: 100%;
     }
 }
 
-@media (max-width: 600px){
-    .background{
-        grid-template-columns: repeat(6,1fr);
-        grid-template-rows: repeat(6,1fr);
+@media (max-width: 600px) {
+    .background {
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: repeat(6, 1fr);
         grid-template-areas:
-        ". word word word word ."
-        "form form form form form form"
-        "form form form form form form"
-        "form form form form form form"
-        "form form form form form form"
-        "copy copy copy copy copy copy";
+            ". word word word word ."
+            "form form form form form form"
+            "form form form form form form"
+            "form form form form form form"
+            "form form form form form form"
+            "copy copy copy copy copy copy";
     }
     h1 {
         font-size: 27px;
@@ -160,7 +158,7 @@ h2{
         letter-spacing: 3px;
     }
 
-    .dialog-form{
-       width: 100%;
+    .dialog-form {
+        width: 100%;
     }
 }

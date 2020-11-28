@@ -19,12 +19,10 @@ import java.util.stream.Collectors;
 @Service
 public class ExcelService {
     private final static Logger LOGGER = Logger.getLogger(ExcelService.class.getName());
-    private String fileName = "test";
-    private String saveParam =  System.getProperty("user.home") + "/Desktop/" + fileName + ".xlsx";
-    private CountOfDates countOfDates = new CountOfDates();
 
     public ByteArrayInputStream generateExcel(GenerateExcelDtoInternal generateExcelDtoInternal) throws IOException {
         Employee employee = generateExcelDtoInternal.getEmployee();
+        CountOfDates countOfDates = new CountOfDates(0,0,0,0,0,0,0,0,0,0,0);
 
         List<DatesDtoInternal> datesToPrint = new LinkedList<>();
 
@@ -51,7 +49,7 @@ public class ExcelService {
         Row titleRow = sheet.createRow(1);
         titleRow.setHeightInPoints(40);
         Cell titleCell = titleRow.createCell(0);
-        titleCell.setCellValue("ROCZNA KARTA EWIDENCJI CZASU PRACY za rok 2020");
+        titleCell.setCellValue("ROCZNA KARTA EWIDENCJI CZASU PRACY za rok " + Calendar.getInstance().get(Calendar.YEAR));
         titleCell.setCellStyle(styles.get("title"));
         sheet.addMergedRegion(CellRangeAddress.valueOf("$A$2:$AQ$2"));
 
