@@ -16,7 +16,6 @@ import { ConfirmDialogComponent } from '../general/confirm-dialog/confirm-dialog
 import { AddEmployeeComponent } from './add-employee/add-employee.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
-import { InputDeatilsComponent } from './input-deatils/input-deatils.component';
 
 @Component({
   selector: 'app-main-page',
@@ -42,7 +41,7 @@ export class MainPageComponent implements OnInit {
     private _translate: TranslateService,
     private _generateExcelRestService: GenerateExcelRestService,
     private _fileSaverService: FileSaverService
-  ) {}
+  ) { }
 
   get displayedColumns() {
     return this._displayedColumns;
@@ -145,20 +144,20 @@ export class MainPageComponent implements OnInit {
 
   generateExcel(employee: Employee) {
     this._translate
-            .get('GENERATE.EXCEL.START_GENERATING')
-            .subscribe((res: string) => {
-              this._snackBarService.open(res, 'ok', { duration: 1000 });
-            });
+      .get('GENERATE.EXCEL.START_GENERATING')
+      .subscribe((res: string) => {
+        this._snackBarService.open(res, 'ok', { duration: 1000 });
+      });
 
     this._generateExcelRestService
       .queryGenerateOne(employee.id)
       .pipe(take(1))
       .subscribe((response: HttpResponse<any>) => {
         this._translate
-            .get('GENERATE.EXCEL.SUCCESS')
-            .subscribe((res: string) => {
-              this._snackBarService.open(res, 'ok', { duration: 3000 });
-            });
+          .get('GENERATE.EXCEL.SUCCESS')
+          .subscribe((res: string) => {
+            this._snackBarService.open(res, 'ok', { duration: 3000 });
+          });
 
         const blob = new Blob([response.body], {
           type:
