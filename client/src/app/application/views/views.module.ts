@@ -11,11 +11,10 @@ import { AddEmployeeComponent } from './main-page/add-employee/add-employee.comp
 import { CalendarDayComponent } from './main-page/calendar/calendar-day/calendar-day.component';
 import { CalendarComponent } from './main-page/calendar/calendar.component';
 import { EmployeeDetailsComponent } from './main-page/employee-details/employee-details.component';
-import { InputDeatilsComponent } from './main-page/input-deatils/input-deatils.component';
 import { MainPageComponent } from './main-page/main-page.component';
 
 @NgModule({
-    declarations:[
+    declarations: [
         MainPageComponent,
         NavigationComponent,
         CalendarComponent,
@@ -23,8 +22,7 @@ import { MainPageComponent } from './main-page/main-page.component';
         AddEmployeeComponent,
         EmployeeDetailsComponent,
         CalendarDayComponent,
-        LoginPageComponent,
-        InputDeatilsComponent
+        LoginPageComponent
     ],
     imports: [
         MaterialModule,
@@ -34,12 +32,11 @@ import { MainPageComponent } from './main-page/main-page.component';
         FormsModule,
         TranslateModule.forChild()
     ],
-    entryComponents:[
+    entryComponents: [
         EmployeeDetailsComponent,
         CalendarComponent,
         ConfirmDialogComponent,
-        AddEmployeeComponent,
-        InputDeatilsComponent
+        AddEmployeeComponent
     ]
 })
-export class ViewsModule {}
+export class ViewsModule { }
