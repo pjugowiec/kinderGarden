@@ -1,10 +1,13 @@
 package com.cardIndex.controller;
 
-import com.cardIndex.domain.dto.UserDto;
 import com.cardIndex.domain.entity.User;
 import com.cardIndex.services.UserService;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -13,7 +16,7 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 public class UserController {
 
-    private UserService userService;
+    private final UserService userService;
 
     public UserController(UserService userService) {
         this.userService = userService;
@@ -21,8 +24,11 @@ public class UserController {
 
 
     @GetMapping()
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    public List<User> getAll(){
-        return this.userService.getAllUsers();
+    public ResponseEntity<List<User>> getAll(){
+
+        return ResponseEntity
+            .status(HttpStatus.ACCEPTED)
+                .body(this.userService.getAllUsers());
+
     }
 }

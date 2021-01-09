@@ -3,6 +3,7 @@ package com.cardIndex.controller;
 import com.cardIndex.domain.dto.EmployeeDto;
 import com.cardIndex.services.EmployeeService;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,39 +13,56 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 public class EmployeeController {
 
-    private EmployeeService employeeService;
+    private final EmployeeService employeeService;
+
     public EmployeeController(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
 
     @GetMapping
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    public List<EmployeeDto> getAllEmployee(){
-        return this.employeeService.getAll();
+    public ResponseEntity<List<EmployeeDto>> getAllEmployee(){
+
+        return ResponseEntity
+                .status(HttpStatus.ACCEPTED)
+                .body(this.employeeService.getAll());
     }
 
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public void createEmployee(@RequestBody EmployeeDto employeeDto){
+    public ResponseEntity<Void> createEmployee(@RequestBody final EmployeeDto employeeDto){
         this.employeeService.createEmployee(employeeDto);
+
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .build();
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void updateEmployee(@RequestBody EmployeeDto employeeDto, @PathVariable long id) throws Exception {
+    public ResponseEntity<Void> updateEmployee(@RequestBody final EmployeeDto employeeDto, @PathVariable final long id) throws Exception {
         this.employeeService.updateEmployee(employeeDto, id);
+
+        return ResponseEntity
+                .status(HttpStatus.ACCEPTED)
+                .build();
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void deleteEmployee(@PathVariable long id) {
+    public ResponseEntity<Void> deleteEmployee(@PathVariable final long id) {
         this.employeeService.deleteEmployee(id);
+
+        return ResponseEntity
+                .status(HttpStatus.ACCEPTED)
+                .build();
     }
 
     @PostMapping("/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public EmployeeDto findEmployeeById(@PathVariable long id) throws Exception {
-        return this.employeeService.findEmployeeByID(id);
+    public ResponseEntity<EmployeeDto> findEmployeeById(@PathVariable final long id) throws Exception {
+
+        return ResponseEntity
+                .status(HttpStatus.ACCEPTED)
+                .body(this.employeeService.findEmployeeByID(id));
     }
 
 }

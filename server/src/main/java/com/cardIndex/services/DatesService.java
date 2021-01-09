@@ -10,8 +10,8 @@ import java.util.List;
 
 public interface DatesService {
 
-    List<ParsedDate> getAllDatesByEmployeeIdWithFreeDates(long employeeId);
-    void updateDates(List<DatesDto> datesDto, Integer employeeId);
-    void updateFreeDates(List<DatesFree> datesFrees);
-    void deleteDate(long dateId);
+    List<ParsedDate> getAllDatesByEmployeeIdWithFreeDates(final Long employeeId);
+    void updateDates(final List<DatesDto> datesDto, final Integer employeeId);
+    void updateFreeDates(final List<DatesFree> datesFrees);
+    void deleteDate(final Long dateId);
 }

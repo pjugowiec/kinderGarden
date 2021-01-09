@@ -2,48 +2,59 @@ package com.cardIndex.controller;
 
 import com.cardIndex.domain.dto.DatesDto;
 import com.cardIndex.domain.dto.ParsedDate;
-import com.cardIndex.domain.entity.Dates;
 import com.cardIndex.domain.entity.DatesFree;
-import com.cardIndex.domain.enums.FileType;
 import com.cardIndex.services.DatesService;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 
 @RestController
 @RequestMapping("/dates")
 @CrossOrigin(origins = "*")
 public class DatesController {
-    private DatesService datesService;
+
+    private final DatesService datesService;
 
     public DatesController(DatesService datesService) {
         this.datesService = datesService;
     }
 
     @GetMapping
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    public List<ParsedDate> getAllDatesByEmployeeIdWithFreeDates(@RequestParam long employeeId) {
-        return this.datesService.getAllDatesByEmployeeIdWithFreeDates(employeeId);
+    public ResponseEntity<List<ParsedDate>> getAllDatesByEmployeeIdWithFreeDates(@RequestParam final long employeeId) {
+
+        return ResponseEntity
+                .status(HttpStatus.ACCEPTED)
+                .body(this.datesService.getAllDatesByEmployeeIdWithFreeDates(employeeId));
     }
 
     @PutMapping
-    @ResponseStatus(HttpStatus.OK)
-    public void updateDate(@RequestBody List<DatesDto> datesDto, @RequestParam Integer employeeId) {
+    public ResponseEntity<Void> updateDate(@RequestBody final List<DatesDto> datesDto,
+                                           @RequestParam final Integer employeeId) {
         this.datesService.updateDates(datesDto, employeeId);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .build();
     }
 
     @PostMapping("/freeDates")
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    public void updateFreeDates(@RequestBody List<DatesFree> datesFrees) {
+    public ResponseEntity<Void> updateFreeDates(@RequestBody final List<DatesFree> datesFrees) {
         this.datesService.updateFreeDates(datesFrees);
+
+        return ResponseEntity
+                .status(HttpStatus.ACCEPTED)
+                .build();
     }
 
     @DeleteMapping
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    public void deleteDate(@RequestParam long dateId) {
+    public ResponseEntity<Void> deleteDate(@RequestParam final long dateId) {
         this.datesService.deleteDate(dateId);
+
+        return ResponseEntity
+                .status(HttpStatus.ACCEPTED)
+                .build();
     }
 
 }

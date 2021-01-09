@@ -68,7 +68,7 @@ export class MainPageComponent implements OnInit {
         data: { id: employeeID },
       })
       .afterClosed()
-      .subscribe((response) => {
+      .subscribe(() => {
         this.getData();
       });
   }
@@ -101,13 +101,13 @@ export class MainPageComponent implements OnInit {
     }
   }
 
-  deleteEmployee(id: number) {
+  deleteEmployee(employeeId: number) {
     this._dialog
       .open(ConfirmDialogComponent, {
         data: {
           title: 'EMPLOYEE_PAGE.CONFIRM_DELETE.DELETE_EMPLOYEE',
           message: 'EMPLOYEE_PAGE.CONFIRM_DELETE.DELETE_EMPLOYEE_MESSAGE',
-          onConfirm: this._employeeRestService.queryDelete(id),
+          onConfirm: this._employeeRestService.queryDelete(employeeId),
           error: 'EMPLOYEE_PAGE.CONFIRM_DELETE.ERROR',
         },
       })
@@ -129,7 +129,7 @@ export class MainPageComponent implements OnInit {
     this._dialog
       .open(AddEmployeeComponent)
       .afterClosed()
-      .subscribe((response) => {
+      .subscribe(() => {
         this.getData();
       });
   }

@@ -20,16 +20,17 @@ import java.util.stream.Collectors;
 @Service
 public class DatesServiceImpl implements DatesService {
 
-    private DatesRepository datesRepository;
+    private final DatesRepository datesRepository;
     private final DatesFreeRepostiory datesFreeRepostiory;
 
-    public DatesServiceImpl(DatesRepository datesRepository, DatesFreeRepostiory datesFreeRepostiory) {
+    public DatesServiceImpl(DatesRepository datesRepository,
+                            DatesFreeRepostiory datesFreeRepostiory) {
         this.datesRepository = datesRepository;
         this.datesFreeRepostiory = datesFreeRepostiory;
     }
 
     @Override
-    public List<ParsedDate> getAllDatesByEmployeeIdWithFreeDates(long employeeId) {
+    public List<ParsedDate> getAllDatesByEmployeeIdWithFreeDates(final Long employeeId) {
         List<DatesDto> freeDates = DatesMapper.INSTANCE.freeDatesListToListDto(this.datesFreeRepostiory.findAll());
         List<DatesDto> datesById = DatesMapper.INSTANCE.datesListDtoToDates(this.datesRepository.findByEmployeeId(employeeId));
         datesById.addAll(freeDates);
@@ -51,7 +52,7 @@ public class DatesServiceImpl implements DatesService {
 
     @Override
     @Transactional
-    public void updateDates(List<DatesDto> datesDto, Integer employeeId) {
+    public void updateDates(final List<DatesDto> datesDto, final Integer employeeId) {
         List<Dates> changesDates = DatesMapper.INSTANCE.datesListToDatesDto(datesDto);
         List<Dates> datesFromData = this.datesRepository.findByEmployeeId(employeeId);
         
@@ -60,7 +61,7 @@ public class DatesServiceImpl implements DatesService {
                 .map(Dates::getId)
                 .collect(Collectors.toList());
 
-        datesToDelete.forEach(value -> this.datesRepository.deleteById(value));
+        datesToDelete.forEach(this.datesRepository::deleteById);
 
         List<Dates> datesToSave = new ArrayList<>();
         if (datesFromData.size() == 0) {
@@ -88,12 +89,12 @@ public class DatesServiceImpl implements DatesService {
     }
 
     @Override
-    public void updateFreeDates(List<DatesFree> datesFrees) {
+    public void updateFreeDates(final List<DatesFree> datesFrees) {
         this.datesFreeRepostiory.saveAll(datesFrees);
     }
 
     @Override
-    public void deleteDate(long dateId) {
+    public void deleteDate(final Long dateId) {
         this.datesRepository.deleteById(dateId);
     }
 
