@@ -28,14 +28,14 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public void createEmployee(EmployeeDto employee) {
+    public void createEmployee(final EmployeeDto employee) {
         Employee employeeToSave = EmployeeMapper.INSTANCE.employeeDtoToEmployee(employee);
         this.employeeRepository.save(employeeToSave);
 
     }
 
     @Override
-    public void updateEmployee(EmployeeDto employee, long id) throws Exception {
+    public void updateEmployee(final EmployeeDto employee, final Long id) throws Exception {
         Employee employeeFromData = this.employeeRepository.findById(id)
                 .orElseThrow(Exception::new);
         employeeFromData.setId(id);
@@ -49,7 +49,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     @Transactional
-    public void deleteEmployee(long id) {
+    public void deleteEmployee(final Long id) {
 
         if (this.datesRepository.countByEmployeeId(id) != 0) {
             this.datesRepository.deleteByEmployeeId(id);
@@ -61,7 +61,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public EmployeeDto findEmployeeByID(long id) throws Exception {
+    public EmployeeDto findEmployeeByID(final Long id) throws Exception {
         Employee employeeFromData = this.employeeRepository.findById(id)
                 .orElseThrow(Exception::new);
         return EmployeeMapper.INSTANCE.employeeToEmployeeDto(employeeFromData);

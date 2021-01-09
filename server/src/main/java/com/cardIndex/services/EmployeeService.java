@@ -8,9 +8,9 @@ import java.util.List;
 public interface EmployeeService {
 
     List<EmployeeDto> getAll();
-    void createEmployee(EmployeeDto employee);
-    void updateEmployee(EmployeeDto employee, long id) throws Exception;
-    void deleteEmployee(long id);
-    EmployeeDto findEmployeeByID(long id) throws Exception;
+    void createEmployee(final EmployeeDto employee);
+    void updateEmployee(final EmployeeDto employee, final Long id) throws Exception;
+    void deleteEmployee(final Long id);
+    EmployeeDto findEmployeeByID(final Long id) throws Exception;
 
 }

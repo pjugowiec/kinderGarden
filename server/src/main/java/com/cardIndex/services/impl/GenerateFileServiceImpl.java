@@ -19,24 +19,24 @@ import java.util.Optional;
 
 @Service
 public class GenerateFileServiceImpl implements GenerateFileService {
-    private ExcelService excelService;
-    private DatesRepository datesRepository;
-    private EmployeeRepository employeeRepository;
+
+    private final ExcelService excelService;
+    private final DatesRepository datesRepository;
+    private final EmployeeRepository employeeRepository;
     private final DatesFreeRepostiory datesFreeRepostiory;
 
-    public GenerateFileServiceImpl(ExcelService excelService, DatesRepository datesRepository, EmployeeRepository employeeRepository, DatesFreeRepostiory datesFreeRepostiory) {
+    public GenerateFileServiceImpl(ExcelService excelService,
+                                   DatesRepository datesRepository,
+                                   EmployeeRepository employeeRepository,
+                                   DatesFreeRepostiory datesFreeRepostiory) {
         this.excelService = excelService;
         this.datesRepository = datesRepository;
         this.employeeRepository = employeeRepository;
         this.datesFreeRepostiory = datesFreeRepostiory;
     }
 
-    public List<Dates> findAllDates(int employeeId) {
-        return this.datesRepository.findAll();
-    }
-
     @Override
-    public ByteArrayInputStream generateExcel(long employeeId) throws  NotFoundException {
+    public ByteArrayInputStream generateExcel(final Long employeeId) throws  NotFoundException {
         List<Dates> datesToExcel = this.datesRepository.findByEmployeeId(employeeId);
         Optional<Employee> employeeOptional = this.employeeRepository.findById(employeeId);
         List<DatesFree> datesFrees = this.datesFreeRepostiory.findAll();
@@ -67,7 +67,7 @@ public class GenerateFileServiceImpl implements GenerateFileService {
     }
 
     @Override
-    public void generatePDF(long userId) {
+    public void generatePDF(final Long userId) {
 
     }
 
