@@ -4,39 +4,39 @@ plugins {
 	id 'java'
 	id 'war'
 }
+String springVersion = '2.5.0'
+String apachePoiVersion = '5.0.0'
+String postgresVersion = '42.2.20'
+String lombokVersion = '1.18.20'
 
 group = 'com'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
+sourceCompatibility = '1.11'
 
 repositories {
 	mavenCentral()
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
-	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: springVersion
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: springVersion
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-tomcat', version: springVersion
+	implementation group: 'org.apache.poi', name: 'poi', version: apachePoiVersion
+	implementation group: 'org.postgresql', name: 'postgresql', version: postgresVersion
 
-	runtimeOnly 'org.postgresql:postgresql'
+	compileOnly group: 'org.projectlombok', name: 'lombok', version: lombokVersion
+	annotationProcessor group: 'org.projectlombok', name: 'lombok', version: lombokVersion
 
-	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+	implementation 'org.mapstruct:mapstruct:1.4.2.Final'
+	annotationProcessor 'org.mapstruct:mapstruct-processor:1.4.2.Final'
+
 
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
-
-	// Lombok
-	compileOnly 'org.projectlombok:lombok:1.18.2'
-	annotationProcessor 'org.projectlombok:lombok:1.18.2'
-
-	// MapStruct
-	compile 'org.mapstruct:mapstruct-jdk8:1.2.0.Final'
-	compile 'org.mapstruct:mapstruct-processor:1.2.0.Final'
-	annotationProcessor 'org.mapstruct:mapstruct-processor:1.2.0.Final'
-
-	compile group: 'org.apache.poi', name: 'poi-ooxml', version: '3.17'
-
+	testCompileOnly group: 'org.projectlombok', name: 'lombok', version: lombokVersion
+	testAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: lombokVersion
 
 }
 compileJava {
