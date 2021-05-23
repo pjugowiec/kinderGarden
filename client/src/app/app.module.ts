@@ -10,14 +10,14 @@ import { RestModule } from './application/services/rest.module';
 import { ViewsModule } from './application/views/views.module';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
-    return new TranslateHttpLoader(httpClient);
+  return new TranslateHttpLoader(httpClient, './assets/i18n/', '.json');
 }
 
 @NgModule({
   declarations: [
     AppComponent
   ],
-  
+
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -26,11 +26,12 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     RestModule,
     HttpClientModule,
     TranslateModule.forRoot({
-        loader: {
-            provide: TranslateLoader,
-            useFactory: HttpLoaderFactory,
-            deps: [HttpClient]
-        }
+      defaultLanguage: 'pl',
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
     }),
   ],
   providers: [],

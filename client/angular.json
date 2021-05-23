@@ -31,7 +31,9 @@
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "baseHref": "/cardIndex/",
+            "deployUrl": "/cardIndex/"
           },
           "configurations": {
             "production": {
@@ -68,11 +70,13 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "cardIndex:build"
+            "browserTarget": "cardIndex:build",
+            "proxyConfig": "src/proxy-local.conf.json"
           },
           "configurations": {
             "production": {
-              "browserTarget": "cardIndex:build:production"
+              "browserTarget": "cardIndex:build:production",
+              "proxyConfig": "src/proxy-prod.conf.json"
             }
           }
         },
