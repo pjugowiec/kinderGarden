@@ -1,7 +1,7 @@
 package com.raport.controller;
 
-import com.raport.domain.dto.DatesDto;
-import com.raport.domain.dto.ParsedDate;
+import com.raport.domain.model.DatesDto;
+import com.raport.domain.model.ParsedDate;
 import com.raport.domain.entity.DatesFree;
 import com.raport.services.DatesService;
 import org.springframework.http.HttpStatus;

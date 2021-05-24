@@ -1,6 +1,6 @@
 package com.raport.services.impl;
 
-import com.raport.domain.dto.EmployeeDto;
+import com.raport.domain.model.EmployeeDto;
 import com.raport.domain.entity.Employee;
 import com.raport.repository.DatesRepository;
 import com.raport.repository.EmployeeRepository;

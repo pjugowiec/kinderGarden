@@ -1,6 +1,6 @@
 package com.raport.services.mappers;
 
-import com.raport.domain.dto.EmployeeDto;
+import com.raport.domain.model.EmployeeDto;
 import com.raport.domain.entity.Employee;
 import org.mapstruct.Mapper;
 

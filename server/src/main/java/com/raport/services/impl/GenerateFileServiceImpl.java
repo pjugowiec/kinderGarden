@@ -1,6 +1,6 @@
 package com.raport.services.impl;
 
-import com.raport.domain.dto.internal.GenerateExcelDtoInternal;
+import com.raport.domain.model.internal.GenerateExcelDtoInternal;
 import com.raport.domain.entity.Dates;
 import com.raport.domain.entity.DatesFree;
 import com.raport.domain.entity.Employee;

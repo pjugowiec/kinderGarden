@@ -1,8 +1,8 @@
 package com.raport.utils;
 
-import com.raport.domain.dto.internal.CountOfDates;
-import com.raport.domain.dto.internal.DatesDtoInternal;
-import com.raport.domain.dto.internal.GenerateExcelDtoInternal;
+import com.raport.domain.model.internal.CountOfDates;
+import com.raport.domain.model.internal.DatesDtoInternal;
+import com.raport.domain.model.internal.GenerateExcelDtoInternal;
 import com.raport.domain.entity.Dates;
 import com.raport.domain.entity.Employee;
 import com.raport.domain.enums.DateType;

@@ -1,12 +1,18 @@
 package com.raport.services;
 
-import com.raport.domain.dto.EmployeeDto;
+import com.raport.domain.model.EmployeeDto;
 
-import java.util.List;
+import java.util.Collection;
 
 public interface EmployeeService {
 
-    List<EmployeeDto> getAll();
+    /**
+     * Get employees without filers
+     *
+     * @return Collection of {@link EmployeeDto}
+     */
+    Collection<EmployeeDto> getEmployees();
+
     void createEmployee(final EmployeeDto employee);
     void updateEmployee(final EmployeeDto employee, final Long id) throws Exception;
     void deleteEmployee(final Long id);

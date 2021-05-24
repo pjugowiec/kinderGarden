@@ -1,4 +1,4 @@
-package com.raport.domain.dto.internal;
+package com.raport.domain.model.internal;
 
 import com.raport.domain.entity.Dates;
 import com.raport.domain.entity.Employee;

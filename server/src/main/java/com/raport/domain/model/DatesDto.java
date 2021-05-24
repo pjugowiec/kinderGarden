@@ -1,4 +1,4 @@
-package com.raport.domain.dto;
+package com.raport.domain.model;
 
 import com.raport.domain.enums.DateType;
 import lombok.Data;

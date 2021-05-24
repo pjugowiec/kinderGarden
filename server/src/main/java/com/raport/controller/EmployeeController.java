@@ -1,12 +1,12 @@
 package com.raport.controller;
 
-import com.raport.domain.dto.EmployeeDto;
+import com.raport.domain.model.EmployeeDto;
 import com.raport.services.EmployeeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.Collection;
 
 @RestController
 @RequestMapping("/employee")
@@ -15,54 +15,50 @@ public class EmployeeController {
 
     private final EmployeeService employeeService;
 
-    public EmployeeController(EmployeeService employeeService) {
+    public EmployeeController(final EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
 
     @GetMapping
-    public ResponseEntity<List<EmployeeDto>> getAllEmployee(){
+    public ResponseEntity<Collection<EmployeeDto>> getEmployees(){
 
         return ResponseEntity
-                .status(HttpStatus.ACCEPTED)
+                .ok()
                 .body(this.employeeService.getAll());
+    }
+
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public ResponseEntity<EmployeeDto> findEmployeeById(@PathVariable("id") final Long employeeId) {
+
+        return ResponseEntity
+                .ok()
+                .body(this.employeeService.findEmployeeByID(employeeId));
     }
 
     @PostMapping
     public ResponseEntity<Void> createEmployee(@RequestBody final EmployeeDto employeeDto){
         this.employeeService.createEmployee(employeeDto);
 
-        return ResponseEntity
-                .status(HttpStatus.CREATED)
-                .build();
+        return ResponseEntity.ok().build();
     }
 
     @PutMapping("/{id}")
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    public ResponseEntity<Void> updateEmployee(@RequestBody final EmployeeDto employeeDto, @PathVariable final long id) throws Exception {
-        this.employeeService.updateEmployee(employeeDto, id);
+    public ResponseEntity<Void> updateEmployee(@RequestBody final EmployeeDto employeeDto, @PathVariable("id")  final Long employeeId) {
+        this.employeeService.updateEmployee(employeeDto, employeeId);
 
         return ResponseEntity
-                .status(HttpStatus.ACCEPTED)
+                .ok()
                 .build();
     }
 
     @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    public ResponseEntity<Void> deleteEmployee(@PathVariable final long id) {
-        this.employeeService.deleteEmployee(id);
+    public ResponseEntity<Void> deleteEmployee(@PathVariable("id") final Long employeeId) {
+        this.employeeService.deleteEmployee(employeeId);
 
         return ResponseEntity
-                .status(HttpStatus.ACCEPTED)
+                .ok()
                 .build();
-    }
-
-    @PostMapping("/{id}")
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    public ResponseEntity<EmployeeDto> findEmployeeById(@PathVariable final long id) throws Exception {
-
-        return ResponseEntity
-                .status(HttpStatus.ACCEPTED)
-                .body(this.employeeService.findEmployeeByID(id));
     }
 
 }
