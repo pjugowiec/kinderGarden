@@ -15,6 +15,8 @@ public enum DateType {
     Sunday("Sunday"),
     Saturday("Saturday"),
     Delete("Delete");
+    
+    
 
 
     private final String name;
