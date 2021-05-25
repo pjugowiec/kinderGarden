@@ -8,7 +8,7 @@ public class ValidatorException extends GeneralException {
         super(errorMessages);
     }
 
-    public ValidatorException(String message) {
-        super(message);
+    public ValidatorException(String message, String errorCode) {
+        super(message, errorCode);
     }
 }

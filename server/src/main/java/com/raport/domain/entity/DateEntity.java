@@ -24,7 +24,6 @@ public class DateEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
 
-    @Temporal(TemporalType.TIMESTAMP)
     @JsonFormat(pattern = "yyyy-MM-dd")
     @Column(name = "date", nullable = false)
     private LocalDateTime date;

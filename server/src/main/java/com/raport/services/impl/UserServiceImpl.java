@@ -1,6 +1,6 @@
 package com.raport.services.impl;
 
-import com.raport.domain.entity.User;
+import com.raport.domain.entity.UserEntity;
 import com.raport.repository.UserRepository;
 import com.raport.services.UserService;
 import org.springframework.stereotype.Service;
@@ -17,19 +17,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getAllUsers() {
+    public List<UserEntity> getAllUsers() {
         return this.userRepository.findAll();
     }
 
 
     @Override
-    public void createUser(final User user) {
-            this.userRepository.save(user);
+    public void createUser(final UserEntity userEntity) {
+            this.userRepository.save(userEntity);
     }
 
     @Override
-    public void updateUser(final User user, final Long id) {
-//        User userFromData = this.userRepository.findById(id)
+    public void updateUser(final UserEntity userEntity, final Long id) {
+//        UserEntity userFromData = this.userRepository.findById(id)
 //                .orElseThrow(Ex);
     }
 

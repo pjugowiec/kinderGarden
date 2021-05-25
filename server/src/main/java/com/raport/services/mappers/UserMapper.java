@@ -1,7 +1,7 @@
 package com.raport.services.mappers;
 
+import com.raport.domain.entity.UserEntity;
 import com.raport.domain.model.UserDto;
-import com.raport.domain.entity.User;
 import org.mapstruct.Mapper;
 
 import org.mapstruct.Mapping;
@@ -15,14 +15,14 @@ public interface UserMapper {
     UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
 
     @Mapping(target = "name", ignore = true)
-    UserDto userToUserDto(User user);
-    List<UserDto> usersToUserDtos(List<User> users);
+    UserDto userToUserDto(UserEntity userEntity);
+    List<UserDto> usersToUserDtos(List<UserEntity> userEntities);
 
 //    @Mapping(target = "dates", ignore = true)
 //    @Mapping(target = "id", source = "userId")
-//    User userDtoToUser(UserDto userDto);
+//    UserEntity userDtoToUser(UserDto userDto);
 
 
-//    List<User> userDtosToUsers(List<UserDto> userDtos);
+//    List<UserEntity> userDtosToUsers(List<UserDto> userDtos);
 
 }

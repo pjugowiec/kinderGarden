@@ -5,10 +5,7 @@ import java.util.Set;
 
 import javax.persistence.*;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Table(name = "employees")
@@ -16,6 +13,7 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class EmployeeEntity {
 
     @Id
@@ -41,7 +39,7 @@ public class EmployeeEntity {
     private String position;
 
     @OneToMany(mappedBy = "employee")
-    private Set<Dates> dates;
+    private Set<DateEntity> dates;
 
     @Override
     public boolean equals(Object o) {

@@ -1,14 +1,14 @@
 package com.raport.services;
 
-import com.raport.domain.entity.User;
+import com.raport.domain.entity.UserEntity;
 
 import java.util.List;
 
 public interface UserService {
 
-    List<User> getAllUsers();
-    void createUser(final User user);
-    void updateUser(final User user, final Long id);
+    List<UserEntity> getAllUsers();
+    void createUser(final UserEntity userEntity);
+    void updateUser(final UserEntity userEntity, final Long id);
     void deleteUser(final Long id);
 
 }
