@@ -8,10 +8,10 @@ String springVersion = '2.5.0'
 String apachePoiVersion = '5.0.0'
 String postgresVersion = '42.2.20'
 String lombokVersion = '1.18.20'
+String testContainers = '1.15.3'
 
 group = 'com'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.11'
 
 repositories {
 	mavenCentral()
@@ -28,13 +28,10 @@ dependencies {
 	compileOnly group: 'org.projectlombok', name: 'lombok', version: lombokVersion
 	annotationProcessor group: 'org.projectlombok', name: 'lombok', version: lombokVersion
 
-	implementation 'org.mapstruct:mapstruct:1.4.2.Final'
-	annotationProcessor 'org.mapstruct:mapstruct-processor:1.4.2.Final'
-
-
-	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+	testImplementation(group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: springVersion) {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
+	testImplementation group: 'org.testcontainers', name: 'postgresql', version: testContainers
 	testCompileOnly group: 'org.projectlombok', name: 'lombok', version: lombokVersion
 	testAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: lombokVersion
 
@@ -42,8 +39,6 @@ dependencies {
 compileJava {
 	options.annotationProcessorPath = configurations.annotationProcessor
 	options.setAnnotationProcessorGeneratedSourcesDirectory( file("$projectDir/src/generated/java"))
-	// if you need to configure mapstruct component model
-	options.compilerArgs << "-Amapstruct.defaultComponentModel=spring"
 }
 
 test {
