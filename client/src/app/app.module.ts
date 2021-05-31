@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RestModule } from './application/services/rest.module';
 import { ViewsModule } from './application/views/views.module';
+import { EmployeeFormComponent } from './employee-form/employee-form.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient, './assets/i18n/', '.json');
@@ -15,7 +16,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    EmployeeFormComponent
   ],
 
   imports: [

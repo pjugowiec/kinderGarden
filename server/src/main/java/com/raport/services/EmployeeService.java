@@ -1,5 +1,6 @@
 package com.raport.services;
 
+import com.raport.domain.model.Employee;
 import com.raport.domain.model.EmployeeTable;
 
 import java.util.Collection;

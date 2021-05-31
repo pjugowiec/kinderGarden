@@ -1,4 +1,4 @@
 package com.raport.domain.model;
 
-public class EmployeeForm extends Employee{
+public interface EmployeeForm extends Employee{
 }

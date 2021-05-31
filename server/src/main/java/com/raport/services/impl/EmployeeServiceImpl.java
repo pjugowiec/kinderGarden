@@ -2,9 +2,10 @@ package com.raport.services.impl;
 
 import java.util.Collection;
 
+import com.raport.domain.model.EmployeeTable;
 import org.springframework.stereotype.Service;
 
-import com.raport.domain.model.EmployeeTable;
+import com.raport.domain.model.Employee;
 import com.raport.repository.DatesRepository;
 import com.raport.repository.EmployeeRepository;
 import com.raport.services.EmployeeService;
@@ -22,7 +23,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Collection<EmployeeTable> getEmployees() {
-        return employeeRepository.getEmployees();
+        return employeeRepository.findAllBy();
     }
 
 //    @Override
