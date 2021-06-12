@@ -1,10 +1,12 @@
 package com.integration.report.service;
 
-import com.raport.domain.entity.EmployeeEntity;
-import com.raport.domain.model.employee.EmployeeForm;
-import com.raport.domain.model.employee.EmployeeTable;
-import com.raport.repository.EmployeeRepository;
-import com.raport.service.EmployeeService;
+import com.common.exception.NotFoundException;
+import com.common.model.ErrorMessages;
+import com.report.domain.entity.EmployeeEntity;
+import com.report.domain.model.employee.EmployeeForm;
+import com.report.domain.model.employee.EmployeeTable;
+import com.report.repository.EmployeeRepository;
+import com.report.service.EmployeeService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,7 @@ import java.util.Collection;
 
 import static com.helpers.ReportDataGenerator.createEmployeeForm;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
 @SqlEmployeeInit
@@ -55,5 +58,27 @@ class EmployeeServiceTest {
         assertEquals(employeeForm.getRegularPost(), employeeEntity.getRegularPost());
         assertEquals(employeeForm.getCountOfVacation(), employeeEntity.getCountOfVacation());
         assertEquals(employeeForm.getCountOfChildrenCare(), employeeEntity.getCountOfChildrenCare());
+    }
+
+    @Test
+    @DisplayName("Find employee by id - should return employee")
+    void findEmployeeById_ShouldReturnEmployee() {
+        EmployeeForm employeeForm = employeeService.findById(1000L);
+
+        assertEquals(1000L, employeeForm.getId());
+        assertEquals("Adam", employeeForm.getName());
+        assertEquals("Smith", employeeForm.getLastname());
+        assertEquals("Manage", employeeForm.getPosition());
+        assertEquals("Full", employeeForm.getRegularPost());
+        assertEquals(26, employeeForm.getCountOfVacation());
+        assertEquals(8, employeeForm.getCountOfChildrenCare());
+    }
+
+    @Test
+    @DisplayName("Find employee by id - should throw NotFoundException")
+    void findEmployeeById_ShouldThrowNotFoundException() {
+        NotFoundException exception = assertThrows(NotFoundException.class, () -> employeeService.findById(1L));
+
+        assertEquals(ErrorMessages.EMP01.getValue(), exception.getMessage());
     }
 }

@@ -7,7 +7,9 @@ import lombok.Getter;
 @Getter
 public enum ErrorMessages {
 
-    C01("Internal exception");
+    C01("Internal exception"),
+
+    EMP01("Employee not exists");
 
     private final String value;
 }

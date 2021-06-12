@@ -1,30 +1,33 @@
 package com.integration.report.controller;
 
 
+import com.common.model.ErrorMessages;
+import com.common.model.ErrorResponse;
 import com.config.template.ControllerTemplate;
-import com.raport.domain.entity.EmployeeEntity;
-import com.raport.domain.model.employee.EmployeeForm;
-import com.raport.repository.EmployeeRepository;
-import org.apache.http.HttpStatus;
+import com.report.domain.entity.EmployeeEntity;
+import com.report.domain.model.employee.EmployeeForm;
+import com.report.repository.EmployeeRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import sql.SqlEmployeeInit;
 
 import static com.common.model.ResourceUrl.EMPLOYEE;
-import static com.helpers.CommonValues.API_PREFIX;
-import static com.helpers.CommonValues.JSON_SIZE;
+import static com.helpers.CommonValues.*;
 import static com.helpers.ReportDataGenerator.createEmployeeForm;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.core.Is.is;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SqlEmployeeInit
 class EmployeeControllerTest extends ControllerTemplate {
 
     @Autowired
     private EmployeeRepository employeeRepository;
-∑
+
+
     @Test
     @DisplayName("Get employees - should return all employees")
     void getEmployees_GET_ShouldReturnAllEmployees() {
@@ -33,7 +36,7 @@ class EmployeeControllerTest extends ControllerTemplate {
                 .get(API_PREFIX + EMPLOYEE)
                 .then()
                 .assertThat()
-                .statusCode(HttpStatus.SC_OK)
+                .statusCode(HttpStatus.OK.value())
                 .body(JSON_SIZE, is(3));
     }
 
@@ -47,7 +50,7 @@ class EmployeeControllerTest extends ControllerTemplate {
                 .post(API_PREFIX + EMPLOYEE)
                 .then()
                 .assertThat()
-                .statusCode(HttpStatus.SC_OK);
+                .statusCode(HttpStatus.OK.value());
 
         assertEquals(4L, employeeRepository.count());
 
@@ -63,5 +66,44 @@ class EmployeeControllerTest extends ControllerTemplate {
         assertEquals(employeeForm.getRegularPost(), employeeEntity.getRegularPost());
         assertEquals(employeeForm.getCountOfVacation(), employeeEntity.getCountOfVacation());
         assertEquals(employeeForm.getCountOfChildrenCare(), employeeEntity.getCountOfChildrenCare());
+    }
+
+
+    @Test
+    @DisplayName("Find employee by id - should return employee")
+    void findEmployeeById_ShouldReturnEmployee() {
+        EmployeeForm response = given(requestSpecification)
+                .get(API_PREFIX + EMPLOYEE + ID_PATH, 1000L)
+                .then()
+                .assertThat()
+                .statusCode(HttpStatus.OK.value())
+                .extract()
+                .as(EmployeeForm.class);
+
+        assertEquals(1000L, response.getId());
+        assertEquals("Adam", response.getName());
+        assertEquals("Smith", response.getLastname());
+        assertEquals("Manage", response.getPosition());
+        assertEquals("Full", response.getRegularPost());
+        assertEquals(26, response.getCountOfVacation());
+        assertEquals(8, response.getCountOfChildrenCare());
+    }
+
+    @Test
+    @DisplayName("Find employee by id - should throw exception")
+    void findEmployeeById_ShouldThrowException() {
+        ErrorResponse response = given(requestSpecification)
+                .get(API_PREFIX + EMPLOYEE + ID_PATH, 1L)
+                .then()
+                .assertThat()
+                .statusCode(HttpStatus.NOT_FOUND.value())
+                .extract()
+                .as(ErrorResponse.class);
+
+        assertEquals(ErrorMessages.EMP01.toString(), response.getErrorCode());
+        assertEquals(ErrorMessages.EMP01.getValue(), response.getMessage());
+        assertEquals(HttpStatus.NOT_FOUND, response.getHttpStatus());
+        assertNotNull(response.getTime());
+
     }
 }

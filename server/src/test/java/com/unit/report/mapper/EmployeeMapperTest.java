@@ -1,8 +1,8 @@
 package com.unit.report.mapper;
 
-import com.raport.domain.entity.EmployeeEntity;
-import com.raport.domain.model.employee.EmployeeForm;
-import com.raport.mapper.EmployeeMapper;
+import com.report.domain.entity.EmployeeEntity;
+import com.report.domain.model.employee.EmployeeForm;
+import com.report.mapper.EmployeeMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,6 @@
 package com.helpers;
 
-import com.raport.domain.model.employee.EmployeeForm;
+import com.report.domain.model.employee.EmployeeForm;
 
 public final class ReportDataGenerator {
 
