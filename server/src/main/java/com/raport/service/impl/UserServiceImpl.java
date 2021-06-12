@@ -1,8 +1,8 @@
-package com.raport.services.impl;
+package com.raport.service.impl;
 
 import com.raport.domain.entity.UserEntity;
 import com.raport.repository.UserRepository;
-import com.raport.services.UserService;
+import com.raport.service.UserService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

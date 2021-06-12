@@ -15,7 +15,7 @@ public interface EmployeeRepository extends JpaRepository<EmployeeEntity, Long> 
     @Query("SELECT new com.raport.domain.model.employee.EmployeeTable( " +
             "e.id as id," +
             "e.name as name," +
-            "e.lastName as lastname," +
+            "e.lastname as lastname," +
             "e.regularPost as regularPost," +
             "e.countOfVacation as countOfVacation," +
             "e.countOfChildrenCare as countOfChildrenCare," +

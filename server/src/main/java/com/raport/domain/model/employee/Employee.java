@@ -1,7 +1,9 @@
 package com.raport.domain.model.employee;
 
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
+@SuperBuilder
 @Getter
 @Setter
 @AllArgsConstructor

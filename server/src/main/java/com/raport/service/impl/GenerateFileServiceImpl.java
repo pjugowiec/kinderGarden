@@ -1,10 +1,10 @@
-package com.raport.services.impl;
+package com.raport.service.impl;
 
 import java.io.ByteArrayInputStream;
 
 import org.springframework.stereotype.Service;
 
-import com.raport.services.GenerateFileService;
+import com.raport.service.GenerateFileService;
 
 import javassist.NotFoundException;
 

@@ -1,14 +1,6 @@
 package com.raport.controller;
 
-import com.raport.domain.model.DatesDto;
-import com.raport.domain.model.ParsedDate;
-import com.raport.domain.entity.DatesFree;
-import com.raport.services.DatesService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/dates")

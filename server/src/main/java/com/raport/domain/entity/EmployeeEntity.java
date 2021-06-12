@@ -18,13 +18,13 @@ public class EmployeeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private long id;
+    private Long id;
 
     @Column(name = "name", nullable = false)
     private String name;
 
     @Column(name = "last_name", nullable = false)
-    private String lastName;
+    private String lastname;
 
     @Column(name = "regular_post", nullable = false)
     private String regularPost;
@@ -50,12 +50,12 @@ public class EmployeeEntity {
 	EmployeeEntity that = (EmployeeEntity) o;
 	return id == that.id && countOfVacation == that.countOfVacation
 		&& countOfChildrenCare == that.countOfChildrenCare && name.equals(that.name)
-		&& lastName.equals(that.lastName) && regularPost.equals(that.regularPost)
+		&& lastname.equals(that.lastname) && regularPost.equals(that.regularPost)
 		&& position.equals(that.position);
     }
 
     @Override
     public int hashCode() {
-	return Objects.hash(id, name, lastName, regularPost, countOfVacation, countOfChildrenCare, position);
+	return Objects.hash(id, name, lastname, regularPost, countOfVacation, countOfChildrenCare, position);
     }
 }

@@ -1,15 +1,6 @@
 package com.raport.controller;
 
-import com.raport.domain.enums.FileType;
-import com.raport.services.GenerateFileService;
-import javassist.NotFoundException;
-import org.springframework.core.io.InputStreamResource;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.io.ByteArrayInputStream;
 
 @RestController
 @RequestMapping("/generate")

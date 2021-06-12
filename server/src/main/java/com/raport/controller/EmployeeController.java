@@ -2,14 +2,12 @@ package com.raport.controller;
 
 import java.util.Collection;
 
+import com.raport.domain.model.employee.EmployeeForm;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.raport.domain.model.employee.EmployeeTable;
-import com.raport.services.EmployeeService;
+import com.raport.service.EmployeeService;
 
 import lombok.AllArgsConstructor;
 
@@ -29,18 +27,20 @@ public class EmployeeController {
 	return ResponseEntity.ok(employeeService.getEmployees());
     }
 
+    @PostMapping
+    public ResponseEntity<Void> createEmployee(@RequestBody final EmployeeForm employee) {
+        employeeService.createEmployee(employee);
+
+        return ResponseEntity.ok().build();
+    }
+
 //    @GetMapping("/{id}")
 //    public ResponseEntity<EmployeeDto> findEmployeeById(@PathVariable("id") final Long employeeId) {
 //
 //	return ResponseEntity.ok(employeeService.findById(employeeId));
 //    }
 //
-//    @PostMapping
-//    public ResponseEntity<Void> createEmployee(@RequestBody final EmployeeDto employeeDto) {
-//	employeeService.createEmployee(employeeDto);
-//
-//	return ResponseEntity.ok().build();
-//    }
+
 //
 //    @PutMapping("/{id}")
 //    public ResponseEntity<Void> updateEmployee(@RequestBody final EmployeeDto employeeDto,

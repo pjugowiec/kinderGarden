@@ -1,7 +1,8 @@
-package com.raport.services;
+package com.raport.service;
 
 import java.util.Collection;
 
+import com.raport.domain.model.employee.EmployeeForm;
 import com.raport.domain.model.employee.EmployeeTable;
 
 public interface EmployeeService {
@@ -13,7 +14,8 @@ public interface EmployeeService {
      */
     Collection<EmployeeTable> getEmployees();
 
-//    void createEmployee(final EmployeeDto employee);
+    void createEmployee(final EmployeeForm employee);
+
 //    void updateEmployee(final EmployeeDto employee, final Long employeeId);
 //    void deleteEmployee(final Long employeeId);
 //    EmployeeDto findById(final Long employeeId);

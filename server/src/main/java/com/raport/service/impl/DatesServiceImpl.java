@@ -1,4 +1,4 @@
-//package com.raport.services.impl;
+//package com.raport.service.impl;
 //
 //import com.raport.domain.model.DatesDto;
 //import com.raport.domain.model.ParsedDate;
@@ -7,8 +7,8 @@
 //import com.raport.domain.enums.DateType;
 //import com.raport.repository.DatesFreeRepostiory;
 //import com.raport.repository.DatesRepository;
-//import com.raport.services.DatesService;
-//import com.raport.services.mappers.DatesMapper;
+//import com.raport.service.DatesService;
+//import com.raport.service.mappers.DatesMapper;
 //import org.springframework.stereotype.Service;
 //import org.springframework.transaction.annotation.Transactional;
 //

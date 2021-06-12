@@ -1,4 +1,4 @@
-package com.raport.services;
+package com.raport.service;
 
 import com.raport.domain.model.DatesDto;
 import com.raport.domain.model.ParsedDate;
