@@ -2,28 +2,23 @@ package com.raport.services.impl;
 
 import java.util.Collection;
 
-import com.raport.domain.model.EmployeeTable;
 import org.springframework.stereotype.Service;
 
-import com.raport.domain.model.Employee;
-import com.raport.repository.DatesRepository;
+import com.raport.domain.model.employee.EmployeeTable;
 import com.raport.repository.EmployeeRepository;
 import com.raport.services.EmployeeService;
 
+import lombok.AllArgsConstructor;
+
 @Service
+@AllArgsConstructor
 public class EmployeeServiceImpl implements EmployeeService {
 
     private final EmployeeRepository employeeRepository;
-    private final DatesRepository datesRepository;
-
-    public EmployeeServiceImpl(final EmployeeRepository employeeRepository,final DatesRepository datesRepository) {
-        this.employeeRepository = employeeRepository;
-        this.datesRepository = datesRepository;
-    }
 
     @Override
     public Collection<EmployeeTable> getEmployees() {
-        return employeeRepository.findAllBy();
+	return employeeRepository.findAllBy();
     }
 
 //    @Override

@@ -4,14 +4,9 @@ plugins {
 	id 'java'
 	id 'war'
 }
-String springVersion = '2.5.0'
-String apachePoiVersion = '5.0.0'
-String postgresVersion = '42.2.20'
-String lombokVersion = '1.18.20'
-String testContainers = '1.15.3'
 
 group = 'com'
-version = '0.0.1-SNAPSHOT'
+version = '2.0'
 
 repositories {
 	mavenCentral()
@@ -19,21 +14,21 @@ repositories {
 
 dependencies {
 
-	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: springVersion
-	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: springVersion
-	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-tomcat', version: springVersion
-	implementation group: 'org.apache.poi', name: 'poi', version: apachePoiVersion
-	implementation group: 'org.postgresql', name: 'postgresql', version: postgresVersion
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: Version.springVersion
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: Version.springVersion
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-tomcat', version: Version.springVersion
+	implementation group: 'org.apache.poi', name: 'poi', version: Version.apachePoiVersion
+	implementation group: 'org.postgresql', name: 'postgresql', version: Version.postgresVersion
 
-	compileOnly group: 'org.projectlombok', name: 'lombok', version: lombokVersion
-	annotationProcessor group: 'org.projectlombok', name: 'lombok', version: lombokVersion
+	compileOnly group: 'org.projectlombok', name: 'lombok', version: Version.lombokVersion
+	annotationProcessor group: 'org.projectlombok', name: 'lombok', version: Version.lombokVersion
 
-	testImplementation(group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: springVersion) {
+	testImplementation(group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: Version.springVersion) {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
-	testImplementation group: 'org.testcontainers', name: 'postgresql', version: testContainers
-	testCompileOnly group: 'org.projectlombok', name: 'lombok', version: lombokVersion
-	testAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: lombokVersion
+	testImplementation group: 'org.testcontainers', name: 'postgresql', version: Version.testContainers
+	testCompileOnly group: 'org.projectlombok', name: 'lombok', version: Version.lombokVersion
+	testAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: Version.lombokVersion
 
 }
 compileJava {
@@ -42,5 +37,33 @@ compileJava {
 }
 
 test {
+	systemProperty "file.encoding", "utf-8"
+}
+
+
+task integrationTest(type: Test) {
+	filter {
+		includeTestsMatching "com.integration.*"
+	}
 	useJUnitPlatform()
+}
+
+task unitTest(type: Test) {
+	filter {
+		includeTestsMatching "com.unit.*"
+	}
+
+	useJUnitPlatform()
+}
+
+test.dependsOn unitTest, integrationTest
+
+
+
+class Version {
+	static String springVersion = '2.5.0'
+	static String apachePoiVersion = '5.0.0'
+	static String postgresVersion = '42.2.20'
+	static String lombokVersion = '1.18.20'
+	static String testContainers = '1.15.3'
 }

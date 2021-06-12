@@ -2,26 +2,24 @@ package com.raport.controller;
 
 import java.util.Collection;
 
-import com.raport.domain.model.Employee;
-import com.raport.domain.model.EmployeeTable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.raport.domain.model.employee.EmployeeTable;
 import com.raport.services.EmployeeService;
+
+import lombok.AllArgsConstructor;
 
 @RestController
 @RequestMapping("/employee")
 @CrossOrigin(origins = "*")
+@AllArgsConstructor
 public class EmployeeController {
 
     private final EmployeeService employeeService;
-
-    public EmployeeController(final EmployeeService employeeService) {
-	    this.employeeService = employeeService;
-    }
 
     @GetMapping
     public ResponseEntity<Collection<EmployeeTable>> getEmployees() {
