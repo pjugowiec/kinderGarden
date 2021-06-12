@@ -1,6 +1,6 @@
 plugins {
-	id 'org.springframework.boot' version '2.2.4.RELEASE'
-	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'org.springframework.boot' version '2.5.1'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
 	id 'war'
 }
@@ -14,21 +14,22 @@ repositories {
 
 dependencies {
 
-	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: Version.springVersion
-	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: Version.springVersion
-	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-tomcat', version: Version.springVersion
-	implementation group: 'org.apache.poi', name: 'poi', version: Version.apachePoiVersion
-	implementation group: 'org.postgresql', name: 'postgresql', version: Version.postgresVersion
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: Version.spring
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: Version.spring
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-tomcat', version: Version.spring
+	implementation group: 'org.apache.poi', name: 'poi', version: Version.apachePoi
+	implementation group: 'org.postgresql', name: 'postgresql', version: Version.postgres
 
-	compileOnly group: 'org.projectlombok', name: 'lombok', version: Version.lombokVersion
-	annotationProcessor group: 'org.projectlombok', name: 'lombok', version: Version.lombokVersion
+	compileOnly group: 'org.projectlombok', name: 'lombok', version: Version.lombok
+	annotationProcessor group: 'org.projectlombok', name: 'lombok', version: Version.lombok
 
-	testImplementation(group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: Version.springVersion) {
+	testImplementation(group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: Version.spring) {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
+	testImplementation group: 'io.rest-assured', name: 'rest-assured', version: Version.restAssure
 	testImplementation group: 'org.testcontainers', name: 'postgresql', version: Version.testContainers
-	testCompileOnly group: 'org.projectlombok', name: 'lombok', version: Version.lombokVersion
-	testAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: Version.lombokVersion
+	testCompileOnly group: 'org.projectlombok', name: 'lombok', version: Version.lombok
+	testAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: Version.lombok
 
 }
 compileJava {
@@ -58,12 +59,11 @@ task unitTest(type: Test) {
 
 test.dependsOn unitTest, integrationTest
 
-
-
 class Version {
-	static String springVersion = '2.5.0'
-	static String apachePoiVersion = '5.0.0'
-	static String postgresVersion = '42.2.20'
-	static String lombokVersion = '1.18.20'
+	static String spring = '2.5.1'
+	static String apachePoi = '5.0.0'
+	static String postgres = '42.2.20'
+	static String lombok = '1.18.20'
 	static String testContainers = '1.15.3'
+	static String restAssure = '4.4.0'
 }

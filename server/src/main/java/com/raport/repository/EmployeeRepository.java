@@ -1,6 +1,6 @@
 package com.raport.repository;
 
-import java.util.Collection;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -21,5 +21,6 @@ public interface EmployeeRepository extends JpaRepository<EmployeeEntity, Long> 
             "e.countOfChildrenCare as countOfChildrenCare," +
             "e.position as position" +
             ") FROM #{#entityName} e")
-    Collection<EmployeeTable> findAllBy();
+    List<EmployeeTable> findAllEmployees();
+
 }

@@ -13,8 +13,10 @@ import com.raport.services.EmployeeService;
 
 import lombok.AllArgsConstructor;
 
+import static com.common.model.ResourceUrl.EMPLOYEE;
+
 @RestController
-@RequestMapping("/employee")
+@RequestMapping(EMPLOYEE)
 @CrossOrigin(origins = "*")
 @AllArgsConstructor
 public class EmployeeController {
