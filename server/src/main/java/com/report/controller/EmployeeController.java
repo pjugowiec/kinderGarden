@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Collection;
 
 import static com.common.model.ResourceUrl.EMPLOYEE;
@@ -26,7 +27,7 @@ public class EmployeeController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> createEmployee(@RequestBody final EmployeeForm employee) {
+    public ResponseEntity<Void> createEmployee(@Valid @RequestBody final EmployeeForm employee) {
         employeeService.createEmployee(employee);
 
         return ResponseEntity.ok().build();
@@ -46,7 +47,7 @@ public class EmployeeController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> updateEmployee(@RequestBody final EmployeeForm employee,
+    public ResponseEntity<Void> updateEmployee(@Valid @RequestBody final EmployeeForm employee,
                                                @PathVariable("id") final Long id) {
         employeeService.updateEmployee(employee, id);
 

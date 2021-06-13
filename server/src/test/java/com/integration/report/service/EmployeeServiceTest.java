@@ -1,7 +1,7 @@
 package com.integration.report.service;
 
 import com.common.exception.NotFoundException;
-import com.common.model.ErrorMessages;
+import com.common.model.ErrorMessage;
 import com.report.domain.entity.EmployeeEntity;
 import com.report.domain.model.employee.EmployeeForm;
 import com.report.domain.model.employee.EmployeeTable;
@@ -79,7 +79,7 @@ class EmployeeServiceTest {
     void findEmployeeById_ShouldThrowNotFoundException() {
         NotFoundException exception = assertThrows(NotFoundException.class, () -> employeeService.findById(1L));
 
-        assertEquals(ErrorMessages.EMP01.getValue(), exception.getMessage());
+        assertEquals(ErrorMessage.EMP01.getValue(), exception.getMessage());
     }
 
     @Test
@@ -103,7 +103,7 @@ class EmployeeServiceTest {
         NotFoundException exception = assertThrows(NotFoundException.class,
                 () -> employeeService.deleteEmployee(1L));
 
-        assertEquals(ErrorMessages.EMP01.getValue(), exception.getMessage());
+        assertEquals(ErrorMessage.EMP01.getValue(), exception.getMessage());
         assertEquals(repoCount, employeeRepository.count());
     }
 
@@ -114,7 +114,7 @@ class EmployeeServiceTest {
 
         employeeService.updateEmployee(employeeForm, 1000L);
 
-        EmployeeEntity employeeEntity = employeeRepository.findById(1000L).orElseThrow(() -> new NotFoundException(ErrorMessages.EMP01));
+        EmployeeEntity employeeEntity = employeeRepository.findById(1000L).orElseThrow(() -> new NotFoundException(ErrorMessage.EMP01));
 
         assertEquals(1000L, employeeEntity.getId());
         assertEquals(employeeForm.getName(), employeeEntity.getName());
@@ -132,6 +132,6 @@ class EmployeeServiceTest {
 
         NotFoundException exception = assertThrows(NotFoundException.class, () -> employeeService.updateEmployee(employeeForm, 1L));
 
-        assertEquals(ErrorMessages.EMP01.getValue(), exception.getMessage());
+        assertEquals(ErrorMessage.EMP01.getValue(), exception.getMessage());
     }
 }

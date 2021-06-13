@@ -1,8 +1,7 @@
 package com.report.service.impl;
 
-import com.common.exception.GeneralException;
 import com.common.exception.NotFoundException;
-import com.common.model.ErrorMessages;
+import com.common.model.ErrorMessage;
 import com.report.domain.entity.EmployeeEntity;
 import com.report.domain.model.employee.EmployeeForm;
 import com.report.domain.model.employee.EmployeeTable;
@@ -37,7 +36,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public EmployeeForm findById(final Long id) {
         return employeeRepository.findEmployeeById(id)
-                .orElseThrow(() -> new NotFoundException(ErrorMessages.EMP01));
+                .orElseThrow(() -> new NotFoundException(ErrorMessage.EMP01));
     }
 
     @Transactional
@@ -45,7 +44,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     public void deleteEmployee(final Long employeeId) {
         Optional<EmployeeEntity> optionalEmployeeEntity = employeeRepository.findById(employeeId);
 
-        if(optionalEmployeeEntity.isEmpty()) throw new NotFoundException(ErrorMessages.EMP01);
+        if(optionalEmployeeEntity.isEmpty()) throw new NotFoundException(ErrorMessage.EMP01);
 
         employeeRepository.deleteById(employeeId);
 
@@ -55,7 +54,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public void updateEmployee(final EmployeeForm employee, final Long id) {
         EmployeeEntity employeeEntity = employeeRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException(ErrorMessages.EMP01));
+                .orElseThrow(() -> new NotFoundException(ErrorMessage.EMP01));
 
         employeeEntity = employeeMapper.updateEmployeeEntityByEmployeeForm(employeeEntity, employee);
 

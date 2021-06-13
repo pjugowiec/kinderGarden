@@ -1,10 +1,10 @@
 package com.common.exception;
 
-import com.common.model.ErrorMessages;
+import com.common.model.ErrorMessage;
 
 public class NotFoundException extends GeneralException{
 
-    public NotFoundException(ErrorMessages errorMessages) {
-        super(errorMessages);
+    public NotFoundException(ErrorMessage errorMessage) {
+        super(errorMessage);
     }
 }

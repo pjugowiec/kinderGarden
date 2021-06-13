@@ -1,6 +1,6 @@
 package com.common.exception;
 
-import com.common.model.ErrorMessages;
+import com.common.model.ErrorMessage;
 import lombok.Getter;
 
 public class GeneralException extends RuntimeException {
@@ -18,9 +18,9 @@ public class GeneralException extends RuntimeException {
         this.errorCode = errorCode;
     }
 
-    public GeneralException(final ErrorMessages errorMessages) {
-        super(errorMessages.getValue());
-        this.errorCode = errorMessages.name();
+    public GeneralException(final ErrorMessage errorMessage) {
+        super(errorMessage.getValue());
+        this.errorCode = errorMessage.name();
     }
 
 }

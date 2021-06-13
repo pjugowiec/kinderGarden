@@ -1,7 +1,7 @@
 package com.integration.report.controller;
 
 
-import com.common.model.ErrorMessages;
+import com.common.model.ErrorMessage;
 import com.common.model.ErrorResponse;
 import com.config.template.ControllerTemplate;
 import com.report.domain.entity.EmployeeEntity;
@@ -101,8 +101,8 @@ class EmployeeControllerTest extends ControllerTemplate {
                 .extract()
                 .as(ErrorResponse.class);
 
-        assertEquals(ErrorMessages.EMP01.toString(), response.getErrorCode());
-        assertEquals(ErrorMessages.EMP01.getValue(), response.getMessage());
+        assertEquals(ErrorMessage.EMP01.toString(), response.getErrorCode());
+        assertEquals(ErrorMessage.EMP01.getValue(), response.getMessage());
         assertEquals(HttpStatus.NOT_FOUND, response.getHttpStatus());
         assertNotNull(response.getTime());
     }
@@ -138,8 +138,8 @@ class EmployeeControllerTest extends ControllerTemplate {
                 .as(ErrorResponse.class);
 
         assertEquals(repoCount, employeeRepository.count());
-        assertEquals(ErrorMessages.EMP01.toString(), response.getErrorCode());
-        assertEquals(ErrorMessages.EMP01.getValue(), response.getMessage());
+        assertEquals(ErrorMessage.EMP01.toString(), response.getErrorCode());
+        assertEquals(ErrorMessage.EMP01.getValue(), response.getMessage());
         assertEquals(HttpStatus.NOT_FOUND, response.getHttpStatus());
         assertNotNull(response.getTime());
     }
@@ -184,8 +184,8 @@ class EmployeeControllerTest extends ControllerTemplate {
                 .extract()
                 .as(ErrorResponse.class);
 
-        assertEquals(ErrorMessages.EMP01.toString(), response.getErrorCode());
-        assertEquals(ErrorMessages.EMP01.getValue(), response.getMessage());
+        assertEquals(ErrorMessage.EMP01.toString(), response.getErrorCode());
+        assertEquals(ErrorMessage.EMP01.getValue(), response.getMessage());
         assertEquals(HttpStatus.NOT_FOUND, response.getHttpStatus());
         assertNotNull(response.getTime());
     }
