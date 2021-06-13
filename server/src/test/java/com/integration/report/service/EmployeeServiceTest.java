@@ -14,10 +14,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import sql.SqlEmployeeInit;
 
 import java.util.Collection;
+import java.util.Optional;
 
 import static com.helpers.ReportDataGenerator.createEmployeeForm;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @SqlEmployeeInit
@@ -78,6 +78,59 @@ class EmployeeServiceTest {
     @DisplayName("Find employee by id - should throw NotFoundException")
     void findEmployeeById_ShouldThrowNotFoundException() {
         NotFoundException exception = assertThrows(NotFoundException.class, () -> employeeService.findById(1L));
+
+        assertEquals(ErrorMessages.EMP01.getValue(), exception.getMessage());
+    }
+
+    @Test
+    @DisplayName("Delete employee by id - should delete employee")
+    void deleteEmployeeById_ShouldDeleteEmployee() {
+        final long repoCount = employeeRepository.count();
+
+        employeeService.deleteEmployee(1000L);
+
+        Optional<EmployeeEntity> optionalEmployeeEntity = employeeRepository.findById(1000L);
+
+        assertTrue(optionalEmployeeEntity.isEmpty());
+        assertEquals(repoCount - 1, employeeRepository.count());
+    }
+
+    @Test
+    @DisplayName("Delete employee by id - should throw and not delete employee")
+    void deleteEmployeeById_ShouldThrowAndNotDeleteEmployee() {
+        final long repoCount = employeeRepository.count();
+
+        NotFoundException exception = assertThrows(NotFoundException.class,
+                () -> employeeService.deleteEmployee(1L));
+
+        assertEquals(ErrorMessages.EMP01.getValue(), exception.getMessage());
+        assertEquals(repoCount, employeeRepository.count());
+    }
+
+    @Test
+    @DisplayName("Update employee - should update entity")
+    void updateEmployee_ShouldUpdateEntity() {
+        final EmployeeForm employeeForm = createEmployeeForm();
+
+        employeeService.updateEmployee(employeeForm, 1000L);
+
+        EmployeeEntity employeeEntity = employeeRepository.findById(1000L).orElseThrow(() -> new NotFoundException(ErrorMessages.EMP01));
+
+        assertEquals(1000L, employeeEntity.getId());
+        assertEquals(employeeForm.getName(), employeeEntity.getName());
+        assertEquals(employeeForm.getLastname(), employeeEntity.getLastname());
+        assertEquals(employeeForm.getPosition(), employeeEntity.getPosition());
+        assertEquals(employeeForm.getRegularPost(), employeeEntity.getRegularPost());
+        assertEquals(employeeForm.getCountOfVacation(), employeeEntity.getCountOfVacation());
+        assertEquals(employeeForm.getCountOfChildrenCare(), employeeEntity.getCountOfChildrenCare());
+    }
+
+    @Test
+    @DisplayName("Update employee - should throw not found exception")
+    void updateEmployee_ShouldThrowNotFoundException() {
+        final EmployeeForm employeeForm = createEmployeeForm();
+
+        NotFoundException exception = assertThrows(NotFoundException.class, () -> employeeService.updateEmployee(employeeForm, 1L));
 
         assertEquals(ErrorMessages.EMP01.getValue(), exception.getMessage());
     }

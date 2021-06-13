@@ -13,13 +13,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import sql.SqlEmployeeInit;
 
+import java.util.Optional;
+
 import static com.common.model.ResourceUrl.EMPLOYEE;
 import static com.helpers.CommonValues.*;
 import static com.helpers.ReportDataGenerator.createEmployeeForm;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.core.Is.is;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SqlEmployeeInit
 class EmployeeControllerTest extends ControllerTemplate {
@@ -104,6 +105,88 @@ class EmployeeControllerTest extends ControllerTemplate {
         assertEquals(ErrorMessages.EMP01.getValue(), response.getMessage());
         assertEquals(HttpStatus.NOT_FOUND, response.getHttpStatus());
         assertNotNull(response.getTime());
+    }
 
+    @Test
+    @DisplayName("Delete employee - should delete employee")
+    void deleteEmployee_ShouldDeleteEmployee() {
+        final long repoCount = employeeRepository.count();
+
+        given(requestSpecification)
+                .delete(API_PREFIX + EMPLOYEE + ID_PATH, 1000L)
+                .then()
+                .assertThat()
+                .statusCode(HttpStatus.OK.value());
+
+        Optional<EmployeeEntity> optionalEmployeeEntity = employeeRepository.findById(1000L);
+
+        assertTrue(optionalEmployeeEntity.isEmpty());
+        assertEquals(repoCount - 1, employeeRepository.count());
+    }
+
+    @Test
+    @DisplayName("Delete employee - should throw exception and not delete")
+    void deleteEmployee_ShouldThrowExceptionAndNotDelete() {
+        final long repoCount = employeeRepository.count();
+
+        ErrorResponse response = given(requestSpecification)
+                .delete(API_PREFIX + EMPLOYEE + ID_PATH, 1L)
+                .then()
+                .assertThat()
+                .statusCode(HttpStatus.NOT_FOUND.value())
+                .extract()
+                .as(ErrorResponse.class);
+
+        assertEquals(repoCount, employeeRepository.count());
+        assertEquals(ErrorMessages.EMP01.toString(), response.getErrorCode());
+        assertEquals(ErrorMessages.EMP01.getValue(), response.getMessage());
+        assertEquals(HttpStatus.NOT_FOUND, response.getHttpStatus());
+        assertNotNull(response.getTime());
+    }
+
+    @Test
+    @DisplayName("Update employee - should update entity")
+    void updateEmployee_ShouldUpdateEntity() {
+        final EmployeeForm employeeForm = createEmployeeForm();
+
+        given(requestSpecification)
+                .body(employeeForm)
+                .put(API_PREFIX + EMPLOYEE + ID_PATH, 1000L)
+                .then()
+                .assertThat()
+                .statusCode(HttpStatus.OK.value());
+
+        Optional<EmployeeEntity> optionalEmployeeEntity = employeeRepository.findById(1000L);
+
+        assertTrue(optionalEmployeeEntity.isPresent());
+        EmployeeEntity employeeEntity = optionalEmployeeEntity.get();
+
+        assertEquals(1000L, employeeEntity.getId());
+        assertEquals(employeeForm.getName(), employeeEntity.getName());
+        assertEquals(employeeForm.getLastname(), employeeEntity.getLastname());
+        assertEquals(employeeForm.getPosition(), employeeEntity.getPosition());
+        assertEquals(employeeForm.getRegularPost(), employeeEntity.getRegularPost());
+        assertEquals(employeeForm.getCountOfVacation(), employeeEntity.getCountOfVacation());
+        assertEquals(employeeForm.getCountOfChildrenCare(), employeeEntity.getCountOfChildrenCare());
+    }
+
+    @Test
+    @DisplayName("Delete employee - should throw exception and not delete")
+    void updateEmployee_ShouldThrowExceptionAndNotDelete() {
+        final EmployeeForm employeeForm = createEmployeeForm();
+
+        ErrorResponse response = given(requestSpecification)
+                .body(employeeForm)
+                .put(API_PREFIX + EMPLOYEE + ID_PATH, 1L)
+                .then()
+                .assertThat()
+                .statusCode(HttpStatus.NOT_FOUND.value())
+                .extract()
+                .as(ErrorResponse.class);
+
+        assertEquals(ErrorMessages.EMP01.toString(), response.getErrorCode());
+        assertEquals(ErrorMessages.EMP01.getValue(), response.getMessage());
+        assertEquals(HttpStatus.NOT_FOUND, response.getHttpStatus());
+        assertNotNull(response.getTime());
     }
 }

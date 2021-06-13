@@ -1,5 +1,6 @@
 package com.report.service.impl;
 
+import com.common.exception.GeneralException;
 import com.common.exception.NotFoundException;
 import com.common.model.ErrorMessages;
 import com.report.domain.entity.EmployeeEntity;
@@ -11,7 +12,9 @@ import com.report.service.EmployeeService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Collection;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -32,36 +35,31 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public EmployeeForm findById(Long id) {
+    public EmployeeForm findById(final Long id) {
         return employeeRepository.findEmployeeById(id)
                 .orElseThrow(() -> new NotFoundException(ErrorMessages.EMP01));
     }
 
-    // @Override
-    // public void updateEmployee(final EmployeeDto employee, final Long id) throws
-    // Exception {
-    // Employee employeeFromData = this.employeeRepository.findById(id)
-    // .orElseThrow(Exception::new);
-    // employeeFromData.setId(id);
-    // employeeFromData.setCountOfChildrenCare(employee.getCountOfChildrenCare());
-    // employeeFromData.setCountOfVacation(employee.getCountOfVacation());
-    // employeeFromData.setName(employee.getName());
-    // employeeFromData.setPosition(employee.getPosition());
-    // employeeFromData.setRegularPost(employee.getRegularPost());
-    // this.employeeRepository.save(employeeFromData);
-    // }
-    //
-    // @Override
-    // @Transactional
-    // public void deleteEmployee(final Long id) {
-    //
-    // if (this.datesRepository.countByEmployeeId(id) != 0) {
-    // this.datesRepository.deleteByEmployeeId(id);
-    // this.employeeRepository.deleteById(id);
-    // } else {
-    // this.employeeRepository.deleteById(id);
-    // }
-    //
-    // }
-    //
+    @Transactional
+    @Override
+    public void deleteEmployee(final Long employeeId) {
+        Optional<EmployeeEntity> optionalEmployeeEntity = employeeRepository.findById(employeeId);
+
+        if(optionalEmployeeEntity.isEmpty()) throw new NotFoundException(ErrorMessages.EMP01);
+
+        employeeRepository.deleteById(employeeId);
+
+    }
+
+    @Transactional
+    @Override
+    public void updateEmployee(final EmployeeForm employee, final Long id) {
+        EmployeeEntity employeeEntity = employeeRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException(ErrorMessages.EMP01));
+
+        employeeEntity = employeeMapper.updateEmployeeEntityByEmployeeForm(employeeEntity, employee);
+
+        employeeRepository.save(employeeEntity);
+
+    }
 }

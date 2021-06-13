@@ -6,4 +6,6 @@ import com.report.domain.model.employee.EmployeeForm;
 public interface EmployeeMapper {
 
     EmployeeEntity employeeFormToEmployeeEntity(final EmployeeForm employee);
+
+    EmployeeEntity updateEmployeeEntityByEmployeeForm(EmployeeEntity employeeEntity, final EmployeeForm employeeForm);
 }

@@ -18,8 +18,9 @@ public interface EmployeeService {
 
     EmployeeForm findById(final Long id);
 
-//    void updateEmployee(final EmployeeDto employee, final Long employeeId);
-//    void deleteEmployee(final Long employeeId);
+    void deleteEmployee(final Long employeeId);
+    void updateEmployee(final EmployeeForm employee, final Long id);
+
 
 
 }

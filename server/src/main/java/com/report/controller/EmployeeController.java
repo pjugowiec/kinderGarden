@@ -1,15 +1,13 @@
 package com.report.controller;
 
-import java.util.Collection;
-
 import com.report.domain.model.employee.EmployeeForm;
+import com.report.domain.model.employee.EmployeeTable;
+import com.report.service.EmployeeService;
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.report.domain.model.employee.EmployeeTable;
-import com.report.service.EmployeeService;
-
-import lombok.AllArgsConstructor;
+import java.util.Collection;
 
 import static com.common.model.ResourceUrl.EMPLOYEE;
 
@@ -24,7 +22,7 @@ public class EmployeeController {
     @GetMapping
     public ResponseEntity<Collection<EmployeeTable>> getEmployees() {
 
-	return ResponseEntity.ok(employeeService.getEmployees());
+        return ResponseEntity.ok(employeeService.getEmployees());
     }
 
     @PostMapping
@@ -37,24 +35,23 @@ public class EmployeeController {
     @GetMapping("/{id}")
     public ResponseEntity<EmployeeForm> findEmployeeById(@PathVariable("id") final Long employeeId) {
 
-	return ResponseEntity.ok(employeeService.findById(employeeId));
+        return ResponseEntity.ok(employeeService.findById(employeeId));
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteEmployee(@PathVariable("id") final Long employeeId) {
+        employeeService.deleteEmployee(employeeId);
 
-//
-//    @PutMapping("/{id}")
-//    public ResponseEntity<Void> updateEmployee(@RequestBody final EmployeeDto employeeDto,
-//	    @PathVariable("id") final Long employeeId) {
-//	employeeService.updateEmployee(employeeDto, employeeId);
-//
-//	return ResponseEntity.ok().build();
-//    }
-//
-//    @DeleteMapping("/{id}")
-//    public ResponseEntity<Void> deleteEmployee(@PathVariable("id") final Long employeeId) {
-//	employeeService.deleteEmployee(employeeId);
-//
-//	return ResponseEntity.ok().build();
-//    }
+        return ResponseEntity.ok().build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> updateEmployee(@RequestBody final EmployeeForm employee,
+                                               @PathVariable("id") final Long id) {
+        employeeService.updateEmployee(employee, id);
+
+        return ResponseEntity.ok().build();
+    }
+
 
 }

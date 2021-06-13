@@ -43,6 +43,7 @@ test {
 
 
 task integrationTest(type: Test) {
+
 	filter {
 		includeTestsMatching "com.integration.*"
 	}
@@ -50,6 +51,7 @@ task integrationTest(type: Test) {
 }
 
 task unitTest(type: Test) {
+
 	filter {
 		includeTestsMatching "com.unit.*"
 	}
@@ -57,7 +59,10 @@ task unitTest(type: Test) {
 	useJUnitPlatform()
 }
 
-test.dependsOn unitTest, integrationTest
+integrationTest.dependsOn unitTest
+test.dependsOn integrationTest
+
+
 
 class Version {
 	static String spring = '2.5.1'

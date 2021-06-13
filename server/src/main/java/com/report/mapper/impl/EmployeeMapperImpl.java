@@ -19,4 +19,15 @@ public class EmployeeMapperImpl implements EmployeeMapper {
                 .countOfVacation(employee.getCountOfVacation())
                 .build();
     }
+
+    @Override
+    public EmployeeEntity updateEmployeeEntityByEmployeeForm(EmployeeEntity employeeEntity, final EmployeeForm employeeForm) {
+        employeeEntity.setName(employeeForm.getName());
+        employeeEntity.setLastname(employeeForm.getLastname());
+        employeeEntity.setPosition(employeeForm.getPosition());
+        employeeEntity.setRegularPost(employeeForm.getRegularPost());
+        employeeEntity.setCountOfChildrenCare(employeeForm.getCountOfChildrenCare());
+        employeeEntity.setCountOfVacation(employeeForm.getCountOfVacation());
+        return employeeEntity;
+    }
 }
