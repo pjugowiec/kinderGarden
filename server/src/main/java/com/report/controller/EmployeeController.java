@@ -22,7 +22,6 @@ public class EmployeeController {
 
     @GetMapping
     public ResponseEntity<Collection<EmployeeTable>> getEmployees() {
-
         return ResponseEntity.ok(employeeService.getEmployees());
     }
 

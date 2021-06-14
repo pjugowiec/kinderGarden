@@ -17,26 +17,26 @@ public abstract class Employee {
 
     private Long id;
 
-    @NotNull(message = ErrorMessage.NULL_FIELD)
-    @Size(message = ErrorMessage.THREE_LENGTH)
+    @NotNull(message = ErrorMessage.AnnotationMessage.NULL_FIELD)
+    @Size(min = 3, message = ErrorMessage.AnnotationMessage.THREE_LENGTH)
     private String name;
 
-    @NotNull(message = ErrorMessage.NULL_FIELD)
-    @Size(message = ErrorMessage.THREE_LENGTH)
+    @NotNull(message = ErrorMessage.AnnotationMessage.NULL_FIELD)
+    @Size(min = 3, message = ErrorMessage.AnnotationMessage.THREE_LENGTH)
     private String lastname;
 
-    @NotNull(message = ErrorMessage.NULL_FIELD)
-    @Size(message = ErrorMessage.THREE_LENGTH)
+    @NotNull(message = ErrorMessage.AnnotationMessage.NULL_FIELD)
+    @Size(min = 3, message = ErrorMessage.AnnotationMessage.THREE_LENGTH)
     private String regularPost;
 
-    @NotNull(message = ErrorMessage.NULL_FIELD)
-    @Min(value = 0, message = ErrorMessage.MINIMUM_ZERO)
+    @NotNull(message = ErrorMessage.AnnotationMessage.NULL_FIELD)
+    @Min(value = 0, message = ErrorMessage.AnnotationMessage.MINIMUM_ZERO)
     private Integer countOfVacation;
 
-    @NotNull(message = ErrorMessage.NULL_FIELD)
-    @Min(value = 0, message = ErrorMessage.MINIMUM_ZERO)
+    @NotNull(message = ErrorMessage.AnnotationMessage.NULL_FIELD)
+    @Min(value = 0, message = ErrorMessage.AnnotationMessage.MINIMUM_ZERO)
     private Integer countOfChildrenCare;
 
-    @NotNull(message = ErrorMessage.NULL_FIELD)
+    @NotNull(message = ErrorMessage.AnnotationMessage.NULL_FIELD)
     private String position;
 }

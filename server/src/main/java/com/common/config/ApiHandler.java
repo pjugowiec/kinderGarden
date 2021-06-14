@@ -6,11 +6,11 @@ import com.common.model.ErrorMessage;
 import com.common.model.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import java.net.BindException;
 import java.time.LocalDateTime;
 
 import static com.common.model.ErrorMessage.findByMessage;
@@ -19,11 +19,13 @@ import static com.common.model.ErrorMessage.findByMessage;
 public class ApiHandler {
 
 
-    @ExceptionHandler({BindException.class, MethodArgumentNotValidException.class})
+    @ExceptionHandler({MethodArgumentNotValidException.class})
     public ResponseEntity<ErrorResponse> handleValidationException(Exception exception) {
-        final ErrorMessage errorMessage = findByMessage(exception.getMessage());
+        final BindingResult bindingResult = ((MethodArgumentNotValidException) exception).getBindingResult();
+        // Index 0 because only first message should be send
+        final ErrorMessage errorMessage = findByMessage(bindingResult.getAllErrors().get(0).getDefaultMessage());
         final ErrorResponse errorResponse =
-                createErrorResponse(errorMessage.getValue(), errorMessage.toString(), HttpStatus.NOT_FOUND);
+                createErrorResponse(errorMessage.getValue(), errorMessage.toString(), HttpStatus.BAD_REQUEST);
 
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
