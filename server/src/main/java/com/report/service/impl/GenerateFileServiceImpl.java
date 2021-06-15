@@ -12,12 +12,12 @@ import javassist.NotFoundException;
 public class GenerateFileServiceImpl implements GenerateFileService {
 
 //    private final ExcelService excelService;
-//    private final DatesRepository datesRepository;
+//    private final DateRepository datesRepository;
 //    private final EmployeeRepository employeeRepository;
 //    private final DatesFreeRepostiory datesFreeRepostiory;
 //
 //    public GenerateFileServiceImpl(ExcelService excelService,
-//                                   DatesRepository datesRepository,
+//                                   DateRepository datesRepository,
 //                                   EmployeeRepository employeeRepository,
 //                                   DatesFreeRepostiory datesFreeRepostiory) {
 //        this.excelService = excelService;

@@ -7,4 +7,5 @@ import lombok.NoArgsConstructor;
 public final class ResourceUrl {
 
 	public static final String EMPLOYEE = "/employee";
+	public static final String DATE = "/date";
 }

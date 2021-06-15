@@ -1,16 +1,13 @@
 package com.report.domain.entity;
 
-import java.time.LocalDateTime;
-
-import javax.persistence.*;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.report.domain.enums.DateType;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "dates")
@@ -24,13 +21,12 @@ public class DateEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
     @Column(name = "date", nullable = false)
     private LocalDateTime date;
 
     @Enumerated(value = EnumType.STRING)
-    @Column(name = "date_type", nullable = false)
-    private DateType dateType;
+    @Column(name = "type", nullable = false)
+    private DateType type;
 
     @ManyToOne
     @JoinColumn(name = "employee_id", nullable = false)
