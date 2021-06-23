@@ -8,5 +8,5 @@ public interface DateService {
 
     Collection<DateData> getDatesForEmployee(final Long employeeId);
 
-    void updateDatesForEmployee(final Collection<DateData> dates);
+    void updateDatesForEmployee(final Collection<DateData> dates, final Long employeeId);
 }

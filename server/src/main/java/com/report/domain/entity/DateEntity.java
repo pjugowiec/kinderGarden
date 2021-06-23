@@ -1,12 +1,10 @@
 package com.report.domain.entity;
 
 import com.report.domain.enums.DateType;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -15,6 +13,7 @@ import java.time.LocalDateTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class DateEntity {
 
     @Id
@@ -22,7 +21,7 @@ public class DateEntity {
     private long id;
 
     @Column(name = "date", nullable = false)
-    private LocalDateTime date;
+    private LocalDate date;
 
     @Enumerated(value = EnumType.STRING)
     @Column(name = "type", nullable = false)

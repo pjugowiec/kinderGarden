@@ -6,12 +6,13 @@ import com.report.domain.enums.DateType;
 import lombok.*;
 
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class DateData {
 
     @NotNull(message = ErrorMessage.AnnotationMessage.NULL_FIELD)
@@ -19,8 +20,17 @@ public class DateData {
 
     @NotNull(message = ErrorMessage.AnnotationMessage.NULL_FIELD)
     @JsonFormat(pattern = "yyyy-MM-dd")
-    private LocalDateTime date;
+    private LocalDate date;
 
     @NotNull(message = ErrorMessage.AnnotationMessage.NULL_FIELD)
     private DateType type;
+
+    @NotNull(message = ErrorMessage.AnnotationMessage.NULL_FIELD)
+    private Long employeeId;
+
+    public DateData(Long id, LocalDate date, DateType type) {
+        this.id = id;
+        this.date = date;
+        this.type = type;
+    }
 }

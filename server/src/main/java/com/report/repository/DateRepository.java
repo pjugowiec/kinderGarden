@@ -4,6 +4,7 @@ import com.report.domain.model.DateData;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.report.domain.entity.DateEntity;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -16,14 +17,11 @@ public interface DateRepository extends JpaRepository<DateEntity, Long> {
             " e.date as date," +
             " e.type as type)" +
             " FROM #{#entityName} e" +
-            " WHERE e.id = :employeeId")
+            " WHERE e.employee.id = :employeeId")
     Collection<DateData> findDatesByEmployeeId(@Param("employeeId") final Long employeeId);
 
-
-//    @Query(value = "DELETE FROM dates d WHERE d.date = :date AND d.employee_id = :employeeId ", nativeQuery = true)
-//    void delete (@Param("date") Date date, @Param("employeeId") long employeeId);
-//
-//    void deleteByEmployeeId(long employeeId);
-//
-//    long countByEmployeeId(long employeeId);
+    @Modifying
+    @Query(value = "DELETE FROM #{#entityName} e " +
+            " WHERE e.employee.id = :employeeId")
+    void deleteDatesByEmployeeId(final Long employeeId);
 }

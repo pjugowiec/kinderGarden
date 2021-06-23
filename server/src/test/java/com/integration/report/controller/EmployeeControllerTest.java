@@ -25,9 +25,12 @@ import static org.junit.jupiter.api.Assertions.*;
 @SqlEmployeeInit
 class EmployeeControllerTest extends ControllerTemplate {
 
-    @Autowired
-    private EmployeeRepository employeeRepository;
+    private final EmployeeRepository employeeRepository;
 
+    @Autowired
+    EmployeeControllerTest(EmployeeRepository employeeRepository) {
+        this.employeeRepository = employeeRepository;
+    }
 
     @Test
     @DisplayName("Get employees - should return all employees")

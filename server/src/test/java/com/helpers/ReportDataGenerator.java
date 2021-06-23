@@ -1,7 +1,11 @@
 package com.helpers;
 
 import com.report.domain.entity.EmployeeEntity;
+import com.report.domain.enums.DateType;
+import com.report.domain.model.DateData;
 import com.report.domain.model.employee.EmployeeForm;
+
+import java.time.LocalDate;
 
 public final class ReportDataGenerator {
 
@@ -28,4 +32,14 @@ public final class ReportDataGenerator {
                 .countOfVacation(10)
                 .build();
     }
+
+    public static DateData createDateData() {
+        return DateData.builder()
+                .id(1L)
+                .date(LocalDate.of(2020, 5, 10))
+                .type(DateType.Inne)
+                .employeeId(1000L)
+                .build();
+    }
+
 }
