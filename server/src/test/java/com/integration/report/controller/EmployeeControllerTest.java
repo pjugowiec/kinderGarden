@@ -100,13 +100,13 @@ class EmployeeControllerTest extends ControllerTemplate {
                 .get(API_PREFIX + EMPLOYEE + ID_PATH, 1L)
                 .then()
                 .assertThat()
-                .statusCode(HttpStatus.NOT_FOUND.value())
+                .statusCode(HttpStatus.BAD_REQUEST.value())
                 .extract()
                 .as(ErrorResponse.class);
 
         assertEquals(ErrorMessage.EMP01.toString(), response.getErrorCode());
         assertEquals(ErrorMessage.EMP01.getValue(), response.getMessage());
-        assertEquals(HttpStatus.NOT_FOUND, response.getHttpStatus());
+        assertEquals(HttpStatus.BAD_REQUEST, response.getHttpStatus());
         assertNotNull(response.getTime());
     }
 
@@ -136,14 +136,14 @@ class EmployeeControllerTest extends ControllerTemplate {
                 .delete(API_PREFIX + EMPLOYEE + ID_PATH, 1L)
                 .then()
                 .assertThat()
-                .statusCode(HttpStatus.NOT_FOUND.value())
+                .statusCode(HttpStatus.BAD_REQUEST.value())
                 .extract()
                 .as(ErrorResponse.class);
 
         assertEquals(repoCount, employeeRepository.count());
         assertEquals(ErrorMessage.EMP01.toString(), response.getErrorCode());
         assertEquals(ErrorMessage.EMP01.getValue(), response.getMessage());
-        assertEquals(HttpStatus.NOT_FOUND, response.getHttpStatus());
+        assertEquals(HttpStatus.BAD_REQUEST, response.getHttpStatus());
         assertNotNull(response.getTime());
     }
 
@@ -183,13 +183,13 @@ class EmployeeControllerTest extends ControllerTemplate {
                 .put(API_PREFIX + EMPLOYEE + ID_PATH, 1L)
                 .then()
                 .assertThat()
-                .statusCode(HttpStatus.NOT_FOUND.value())
+                .statusCode(HttpStatus.BAD_REQUEST.value())
                 .extract()
                 .as(ErrorResponse.class);
 
         assertEquals(ErrorMessage.EMP01.toString(), response.getErrorCode());
         assertEquals(ErrorMessage.EMP01.getValue(), response.getMessage());
-        assertEquals(HttpStatus.NOT_FOUND, response.getHttpStatus());
+        assertEquals(HttpStatus.BAD_REQUEST, response.getHttpStatus());
         assertNotNull(response.getTime());
     }
 }

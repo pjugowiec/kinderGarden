@@ -71,7 +71,7 @@ class DateControllerTest extends ControllerTemplate {
 
         ErrorResponse response = given(requestSpecification)
                 .body(datesData)
-                .put(API_PREFIX + DATE + ID_PATH, 1000L)
+                .put(API_PREFIX + DATE + ID_PATH, 100000L)
                 .then()
                 .assertThat()
                 .statusCode(HttpStatus.BAD_REQUEST.value())

@@ -33,8 +33,8 @@ public class ApiHandler {
     @ExceptionHandler({NotFoundException.class})
     public ResponseEntity<ErrorResponse> handleNotFoundException(final NotFoundException exception) {
         final ErrorResponse errorResponse =
-                createErrorResponse(exception.getMessage(), exception.getErrorCode(), HttpStatus.NOT_FOUND);
-        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+                createErrorResponse(exception.getMessage(), exception.getErrorCode(), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler({GeneralException.class, Exception.class})
