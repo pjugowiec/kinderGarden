@@ -4,7 +4,7 @@ import com.common.model.ErrorMessage;
 
 public class NotFoundException extends GeneralException{
 
-    public NotFoundException(ErrorMessage errorMessage) {
+    public NotFoundException(final ErrorMessage errorMessage) {
         super(errorMessage);
     }
 }

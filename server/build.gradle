@@ -18,7 +18,8 @@ dependencies {
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: Version.spring
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-tomcat', version: Version.spring
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: Version.spring
-	implementation group: 'org.apache.poi', name: 'poi', version: Version.apachePoi
+	implementation group: 'org.apache.poi', name: 'poi-ooxml', version: Version.apachePoi
+
 	implementation group: 'org.postgresql', name: 'postgresql', version: Version.postgres
 
 	compileOnly group: 'org.projectlombok', name: 'lombok', version: Version.lombok

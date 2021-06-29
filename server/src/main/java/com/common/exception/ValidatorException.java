@@ -4,11 +4,11 @@ import com.common.model.ErrorMessage;
 
 public class ValidatorException extends GeneralException {
 
-    public ValidatorException(ErrorMessage errorMessage) {
+    public ValidatorException(final ErrorMessage errorMessage) {
         super(errorMessage);
     }
 
-    public ValidatorException(String message, String errorCode) {
+    public ValidatorException(final String message, final String errorCode) {
         super(message, errorCode);
     }
 }

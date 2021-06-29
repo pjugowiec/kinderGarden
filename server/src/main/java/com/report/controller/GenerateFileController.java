@@ -1,28 +1,26 @@
 package com.report.controller;
 
+import com.common.util.ResponseUtil;
+import com.report.service.GenerateFileService;
+import lombok.AllArgsConstructor;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/generate")
 @CrossOrigin(origins = "*")
+@AllArgsConstructor
 public class GenerateFileController {
 
-//    private final GenerateFileService generateFileService;
-//
-//    public GenerateFileController(GenerateFileService generateFileService) {
-//
-//        this.generateFileService = generateFileService;
-//    }
-//
-//    @PostMapping("/{employeeId}")
-//    public ResponseEntity<InputStreamResource> generateFile(@RequestParam final FileType fileType, @PathVariable  final Long employeeId) throws NotFoundException {
-//        ByteArrayInputStream in = this.generateFileService.generateExcel(employeeId);
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.add("Content-Disposition", "attachment; filename=customers.xlsx");
-//
-//        return ResponseEntity
-//                .status(HttpStatus.ACCEPTED)
-//                .headers(headers)
-//                .body(new InputStreamResource(in));
-//    }
+    private final GenerateFileService generateFileService;
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ByteArrayResource> getReportByEmployee(@PathVariable("id") final Long id) {
+
+        return ResponseEntity.ok()
+                .headers(ResponseUtil.createDownloadFileHeader("TEST"))
+                .body(null);
+
+    }
 }

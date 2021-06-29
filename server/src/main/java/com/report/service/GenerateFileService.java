@@ -1,11 +1,8 @@
 package com.report.service;
 
-import javassist.NotFoundException;
-
-import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 
 public interface GenerateFileService {
 
-    ByteArrayInputStream generateExcel(final Long employeeId) throws NotFoundException;
-    void generatePDF(final Long userId);
+    ByteArrayOutputStream generateExcel(final Long employeeId);
 }

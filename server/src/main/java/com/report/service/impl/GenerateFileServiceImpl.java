@@ -1,67 +1,34 @@
 package com.report.service.impl;
 
-import java.io.ByteArrayInputStream;
-
+import com.common.exception.ExcelException;
+import com.common.model.ErrorMessage;
+import com.report.domain.model.excel.ReportConfiguration;
+import com.report.service.GenerateFileService;
+import com.report.utils.ExcelUtil;
+import lombok.AllArgsConstructor;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Service;
 
-import com.report.service.GenerateFileService;
-
-import javassist.NotFoundException;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 
 @Service
+@AllArgsConstructor
 public class GenerateFileServiceImpl implements GenerateFileService {
 
-//    private final ExcelService excelService;
-//    private final DateRepository datesRepository;
-//    private final EmployeeRepository employeeRepository;
-//    private final DatesFreeRepostiory datesFreeRepostiory;
-//
-//    public GenerateFileServiceImpl(ExcelService excelService,
-//                                   DateRepository datesRepository,
-//                                   EmployeeRepository employeeRepository,
-//                                   DatesFreeRepostiory datesFreeRepostiory) {
-//        this.excelService = excelService;
-//        this.datesRepository = datesRepository;
-//        this.employeeRepository = employeeRepository;
-//        this.datesFreeRepostiory = datesFreeRepostiory;
-//    }
+    private final ExcelUtil excelUtil;
+    private final ReportConfiguration reportConfiguration;
 
     @Override
-    public ByteArrayInputStream generateExcel(final Long employeeId) throws  NotFoundException {
-//        List<Dates> datesToExcel = this.datesRepository.findByEmployeeId(employeeId);
-//        Optional<Employee> employeeOptional = this.employeeRepository.findById(employeeId);
-//        List<DatesFree> datesFrees = this.datesFreeRepostiory.findAll();
-//        datesFrees.forEach(date -> {
-//            Dates dates = new Dates();
-//            dates.setDate(date.getFreeDate());
-//            dates.setDateType(date.getDateType());
-//            datesToExcel.add(dates);
-//        });
-//
-//        if(employeeOptional.isPresent()){
-//            Employee employee = employeeOptional.get();
-//            GenerateExcelDtoInternal generateExcelDtoInternal = new GenerateExcelDtoInternal();
-//            generateExcelDtoInternal.setDates(datesToExcel);
-//            generateExcelDtoInternal.setEmployee(employee);
-//            generateExcelDtoInternal.setNameToPrint(employee.getName() + " " + employee.getLastName());
-//
-//            try {
-//                return this.excelService.generateExcel(generateExcelDtoInternal);
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//                return null;
-//            }
-//        } else {
-//            throw new NotFoundException("Not found");
-//        }
-        return null;
+    public ByteArrayOutputStream generateExcel(final Long employeeId) {
+        try {
+            XSSFWorkbook reportWorkBook = excelUtil.getWorkbook(reportConfiguration.getResource());
 
+
+            return null;
+        } catch (IOException ex) {
+            throw new ExcelException(ErrorMessage.EXL01);
+        }
     }
-
-    @Override
-    public void generatePDF(final Long userId) {
-
-    }
-
 }
 

@@ -1,5 +1,6 @@
 package com.common.config;
 
+import com.common.exception.ExcelException;
 import com.common.exception.GeneralException;
 import com.common.exception.NotFoundException;
 import com.common.model.ErrorMessage;
@@ -37,7 +38,7 @@ public class ApiHandler {
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler({GeneralException.class, Exception.class})
+    @ExceptionHandler({ExcelException.class, GeneralException.class, Exception.class})
     public ResponseEntity<ErrorResponse> handleInternalException(final GeneralException exception) {
         final ErrorResponse errorResponse =
                 createErrorResponse(exception.getMessage(), exception.getErrorCode(), HttpStatus.INTERNAL_SERVER_ERROR);
