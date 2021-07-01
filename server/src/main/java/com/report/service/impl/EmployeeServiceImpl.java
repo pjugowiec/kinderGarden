@@ -61,4 +61,13 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeRepository.save(employeeEntity);
 
     }
+
+    @Override
+    public EmployeeEntity getEmployeeWithDates(final Long id, final Integer year) {
+        Optional<EmployeeEntity> employeeEntity = employeeRepository.findEmployeeWithDatesById(id, year);
+
+        if(employeeEntity.isEmpty()) throw new NotFoundException(ErrorMessage.EMP01);
+
+        return employeeEntity.get();
+    }
 }

@@ -5,7 +5,6 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "dates")
@@ -20,7 +19,7 @@ public class DateEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
 
-    @Column(name = "date", nullable = false)
+    @Column(name = "date", nullable = false, columnDefinition = "TIMESTAMP WITH TIME ZONE")
     private LocalDate date;
 
     @Enumerated(value = EnumType.STRING)

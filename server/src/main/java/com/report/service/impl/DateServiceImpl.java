@@ -16,7 +16,7 @@ import java.util.Collection;
 
 @Service
 @AllArgsConstructor
-public class DatesServiceImpl implements DateService {
+public class DateServiceImpl implements DateService {
 
     private final DateRepository dateRepository;
     private final DateMapper dateMapper;

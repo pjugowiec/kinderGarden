@@ -17,7 +17,8 @@ public interface DateRepository extends JpaRepository<DateEntity, Long> {
             " e.date as date," +
             " e.type as type)" +
             " FROM #{#entityName} e" +
-            " WHERE e.employee.id = :employeeId")
+            " WHERE e.employee.id = :employeeId" +
+            " ORDER BY e.date ASC")
     Collection<DateData> findDatesByEmployeeId(@Param("employeeId") final Long employeeId);
 
     @Modifying
