@@ -35,7 +35,7 @@ public class ReportServiceImpl implements ReportService {
     private final ReportConfiguration reportConfiguration;
 
     @Override
-    public ReportModel generateExcel(final Long employeeId) {
+    public ReportModel generateEmployeeReport(final Long employeeId) {
         final Integer currentYear = LocalDate.now().getYear();
         final EmployeeEntity employeeEntity = employeeService.getEmployeeWithDates(employeeId, currentYear);
         final Collection<DateEntity> dates = employeeEntity.getDates();
@@ -67,20 +67,23 @@ public class ReportServiceImpl implements ReportService {
                     final Integer rowMonthIndex = reportConfiguration.getRowMonthIndex(key);
                     final Row row = sheet.getRow(rowMonthIndex);
                     EnumMap<DateType, Integer> monthCounter = new EnumMap<>(DateType.class);
-                    value.forEach(entity -> {
-                        final Integer columnDayIndex = reportConfiguration.getColumnDayIndex(entity.getDate().getDayOfMonth());
-                        DateType dateType = entity.getType();
-                        excelWriter.writeCell(dateType.getValue(), row, columnDayIndex);
-                        updateCounterMap(monthCounter, dateType);
-                        updateCounterMap(globalCounter, dateType);
-                    });
+                    value.forEach(entity -> writeMonthValuesInRowUpdateMonthCounter(entity, row, monthCounter));
                     monthCounter.forEach((dateType, count) ->
                             excelWriter.writeCell(count, row, dateType.getIndex()));
+                    globalCounter.putAll(monthCounter);
                 });
 
         final Row row = sheet.getRow(reportConfiguration.getSummaryRowIndex());
         globalCounter.forEach((dateType, count) ->
                 excelWriter.writeCell(count, row, dateType.getIndex()));
+    }
+
+    private EnumMap<DateType, Integer> writeMonthValuesInRowUpdateMonthCounter(DateEntity entity, Row row, EnumMap<DateType, Integer> monthCounter) {
+        final Integer columnDayIndex = reportConfiguration.getColumnDayIndex(entity.getDate().getDayOfMonth());
+        DateType dateType = entity.getType();
+        excelWriter.writeCell(dateType.getValue(), row, columnDayIndex);
+        updateCounterMap(monthCounter, dateType);
+        return monthCounter;
     }
 
     private void updateCounterMap(EnumMap<DateType, Integer> monthCounter, DateType dateType) {

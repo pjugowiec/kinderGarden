@@ -15,6 +15,8 @@ import javax.transaction.Transactional;
 import java.util.Collection;
 import java.util.Optional;
 
+import static com.common.util.CommonValidator.validateNotNullArguments;
+
 @Service
 @AllArgsConstructor
 public class EmployeeServiceImpl implements EmployeeService {
@@ -64,6 +66,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public EmployeeEntity getEmployeeWithDates(final Long id, final Integer year) {
+        validateNotNullArguments(id, year);
         Optional<EmployeeEntity> employeeEntity = employeeRepository.findEmployeeWithDatesById(id, year);
 
         if(employeeEntity.isEmpty()) throw new NotFoundException(ErrorMessage.EMP01);

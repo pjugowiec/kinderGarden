@@ -16,7 +16,7 @@ public final class ResponseUtil {
     private static final String FORCE_DOWNLOAD = "force-download";
     private static final String ATTACHMENT_WITH_FILE_NAME = "attachment; filename=\"%s\"";
 
-    public static HttpHeaders createDownloadFileHeader(final String fileName) {
+    public static HttpHeaders createDownloadFileHeaders(final String fileName) {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(new MediaType(APP_HEADER, FORCE_DOWNLOAD));
         httpHeaders.set(HttpHeaders.CONTENT_DISPOSITION, String.format(ATTACHMENT_WITH_FILE_NAME, fileName));

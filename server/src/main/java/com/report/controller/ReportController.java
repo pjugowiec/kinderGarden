@@ -21,10 +21,10 @@ public class ReportController {
     @GetMapping("/{id}")
     public ResponseEntity<ByteArrayResource> getReportByEmployee(@PathVariable("id") final Long id) {
 
-        final ReportModel reportExcel = reportService.generateExcel(id);
+        final ReportModel reportExcel = reportService.generateEmployeeReport(id);
 
         return ResponseEntity.ok()
-                .headers(ResponseUtil.createDownloadFileHeader(reportExcel.getFileName() + ".xlsx"))
+                .headers(ResponseUtil.createDownloadFileHeaders(reportExcel.getFileName() + ".xlsx"))
                 .body(new ByteArrayResource(reportExcel.getFile().toByteArray())
                 );
 

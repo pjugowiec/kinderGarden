@@ -17,7 +17,6 @@ public class ExcelUtilImpl implements ExcelUtil {
     @Override
     public XSSFWorkbook getWorkbook(final Resource resource) throws IOException {
         return new XSSFWorkbook(resource.getInputStream());
-
     }
 
     @Override

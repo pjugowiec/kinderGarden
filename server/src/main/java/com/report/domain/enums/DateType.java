@@ -25,13 +25,4 @@ public enum DateType {
 
     @Getter
     private Integer index;
-
-    public boolean equalsName(String otherName) {
-        return value.equals(otherName);
-    }
-
-    @Override
-    public String toString() {
-        return this.value;
-    }
 }

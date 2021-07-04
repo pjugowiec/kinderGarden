@@ -4,5 +4,5 @@ import com.report.domain.model.excel.ReportModel;
 
 public interface ReportService {
 
-    ReportModel generateExcel(final Long employeeId);
+    ReportModel generateEmployeeReport(final Long employeeId);
 }
