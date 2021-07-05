@@ -39,4 +39,8 @@ public abstract class Employee {
 
     @NotNull(message = ErrorMessage.AnnotationMessage.NULL_FIELD)
     private String position;
+
+    public String concatNameWithLastName() {
+        return name + " " + lastname;
+    }
 }

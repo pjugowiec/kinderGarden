@@ -58,8 +58,4 @@ public class EmployeeEntity {
     public int hashCode() {
 	return Objects.hash(id, name, lastname, regularPost, countOfVacation, countOfChildrenCare, position);
     }
-
-    public String concatNameWithLastName() {
-        return name + " " + lastname;
-    }
 }

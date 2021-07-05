@@ -135,12 +135,4 @@ class EmployeeServiceTest {
 
         assertEquals(ErrorMessage.EMP01.getValue(), exception.getMessage());
     }
-
-    @Test
-    @DisplayName("Get Employee With Dates - Should throw exception - Employee id is null")
-    void getEmployeeWithDates_ShouldThrowException_EmployeeIdIsNull() {
-        ValidatorException exception = assertThrows(ValidatorException.class, () -> employeeService.getEmployeeWithDates(null, 2020));
-
-        assertEquals(ErrorMessage.C02.getValue(), exception.getMessage());
-    }
 }

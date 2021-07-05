@@ -36,9 +36,4 @@ public interface EmployeeRepository extends JpaRepository<EmployeeEntity, Long> 
             " ) FROM #{#entityName} e" +
             " WHERE e.id = :id")
     Optional<EmployeeForm> findEmployeeById(@Param("id") final Long id);
-
-    @Query(value = "select * from employees e " +
-            " inner join dates d on (d.employee_id = e.id)" +
-            " where e.id  = :id and date_part('year', d.date) = :year", nativeQuery = true)
-    Optional<EmployeeEntity> findEmployeeWithDatesById(@Param("id") final Long id, @Param("year") final Integer year);
 }

@@ -3,11 +3,12 @@ package com.report.service.impl;
 import com.common.exception.ExcelException;
 import com.common.model.ErrorMessage;
 import com.google.common.collect.ImmutableMap;
-import com.report.domain.entity.DateEntity;
-import com.report.domain.entity.EmployeeEntity;
 import com.report.domain.enums.DateType;
+import com.report.domain.model.DateData;
+import com.report.domain.model.employee.EmployeeForm;
 import com.report.domain.model.excel.ReportConfiguration;
 import com.report.domain.model.excel.ReportModel;
+import com.report.service.DateService;
 import com.report.service.EmployeeService;
 import com.report.service.ReportService;
 import com.report.utils.ExcelUtil;
@@ -30,6 +31,7 @@ import java.util.stream.Collectors;
 public class ReportServiceImpl implements ReportService {
 
     private final EmployeeService employeeService;
+    private final DateService dateService;
     private final ExcelUtil excelUtil;
     private final ExcelWriter excelWriter;
     private final ReportConfiguration reportConfiguration;
@@ -37,19 +39,22 @@ public class ReportServiceImpl implements ReportService {
     @Override
     public ReportModel generateEmployeeReport(final Long employeeId) {
         final Integer currentYear = LocalDate.now().getYear();
-        final EmployeeEntity employeeEntity = employeeService.getEmployeeWithDates(employeeId, currentYear);
-        final Collection<DateEntity> dates = employeeEntity.getDates();
+        final EmployeeForm employeeForm = employeeService.findById(employeeId);
+        final Collection<DateData> dates = dateService.getDatesForEmployee(employeeId).stream()
+                .filter(v -> v.getDate().getYear() == currentYear)
+                .collect(Collectors.toList());
+        
         if (dates.isEmpty()) throw new ExcelException(ErrorMessage.EXL02);
 
         try {
             XSSFWorkbook reportWorkBook = excelUtil.getWorkbook(reportConfiguration.getResource());
             XSSFSheet sheet = reportWorkBook.getSheet(reportConfiguration.getDefaultSheetName());
-            excelUtil.replaceTextInSheet(sheet, createReplaceMap(employeeEntity, currentYear));
+            excelUtil.replaceTextInSheet(sheet, createReplaceMap(employeeForm, currentYear));
 
             fillReportByDates(dates, sheet);
 
             return ReportModel.builder()
-                    .fileName(employeeEntity.concatNameWithLastName())
+                    .fileName(employeeForm.concatNameWithLastName())
                     .file(excelWriter.saveWorkbook(reportWorkBook))
                     .build();
 
@@ -58,7 +63,7 @@ public class ReportServiceImpl implements ReportService {
         }
     }
 
-    private void fillReportByDates(final Collection<DateEntity> dates, final XSSFSheet sheet) {
+    private void fillReportByDates(final Collection<DateData> dates, final XSSFSheet sheet) {
 
         EnumMap<DateType, Integer> globalCounter = new EnumMap<>(DateType.class);
         dates.stream()
@@ -67,7 +72,7 @@ public class ReportServiceImpl implements ReportService {
                     final Integer rowMonthIndex = reportConfiguration.getRowMonthIndex(key);
                     final Row row = sheet.getRow(rowMonthIndex);
                     EnumMap<DateType, Integer> monthCounter = new EnumMap<>(DateType.class);
-                    value.forEach(entity -> writeMonthValuesInRowUpdateMonthCounter(entity, row, monthCounter));
+                    value.forEach(data -> writeMonthValuesInRowUpdateMonthCounter(data, row, monthCounter));
                     monthCounter.forEach((dateType, count) ->
                             excelWriter.writeCell(count, row, dateType.getIndex()));
                     globalCounter.putAll(monthCounter);
@@ -78,9 +83,9 @@ public class ReportServiceImpl implements ReportService {
                 excelWriter.writeCell(count, row, dateType.getIndex()));
     }
 
-    private EnumMap<DateType, Integer> writeMonthValuesInRowUpdateMonthCounter(DateEntity entity, Row row, EnumMap<DateType, Integer> monthCounter) {
-        final Integer columnDayIndex = reportConfiguration.getColumnDayIndex(entity.getDate().getDayOfMonth());
-        DateType dateType = entity.getType();
+    private EnumMap<DateType, Integer> writeMonthValuesInRowUpdateMonthCounter(DateData data, Row row, EnumMap<DateType, Integer> monthCounter) {
+        final Integer columnDayIndex = reportConfiguration.getColumnDayIndex(data.getDate().getDayOfMonth());
+        DateType dateType = data.getType();
         excelWriter.writeCell(dateType.getValue(), row, columnDayIndex);
         updateCounterMap(monthCounter, dateType);
         return monthCounter;
@@ -94,7 +99,7 @@ public class ReportServiceImpl implements ReportService {
         }
     }
 
-    private Map<String, String> createReplaceMap(final EmployeeEntity employee, final Integer currentYear) {
+    private Map<String, String> createReplaceMap(final EmployeeForm employee, final Integer currentYear) {
         return ImmutableMap.of(
                 "#YEAR", currentYear.toString(),
                 "#ETAT", employee.getRegularPost(),

@@ -1,6 +1,6 @@
 package com.unit.report.util;
 
-import com.common.exception.ExcelException;
+import com.common.exception.ValidatorException;
 import com.common.model.ErrorMessage;
 import com.report.utils.ExcelWriter;
 import org.apache.poi.ss.usermodel.Row;
@@ -39,7 +39,7 @@ class ExcelWriterTest {
     void writeCell_Integer_ShouldThrowException_ValueIsNull() {
         XSSFWorkbook workbook = createWorkbookWithOneSheet(DEFAULT_SHEET_NAME);
         Row row = workbook.getSheet(DEFAULT_SHEET_NAME).getRow(0);
-        ExcelException exception = assertThrows(ExcelException.class, () -> excelWriter.writeCell((Integer) null, row, 0));
+        ValidatorException exception = assertThrows(ValidatorException.class, () -> excelWriter.writeCell((Integer) null, row, 0));
 
         assertEquals(ErrorMessage.C02.getValue(), exception.getMessage());
     }
@@ -49,7 +49,7 @@ class ExcelWriterTest {
     void writeCell_Integer_ShouldThrowException_IndexIsNull() {
         XSSFWorkbook workbook = createWorkbookWithOneSheet(DEFAULT_SHEET_NAME);
         Row row = workbook.getSheet(DEFAULT_SHEET_NAME).getRow(0);
-        ExcelException exception = assertThrows(ExcelException.class, () -> excelWriter.writeCell(10, row, null));
+        ValidatorException exception = assertThrows(ValidatorException.class, () -> excelWriter.writeCell(10, row, null));
 
         assertEquals(ErrorMessage.C02.getValue(), exception.getMessage());
     }
@@ -57,7 +57,7 @@ class ExcelWriterTest {
     @Test
     @DisplayName("Write cell - Integer - Should throw exception - Row is null")
     void writeCell_Integer_ShouldThrowException_RowIsNull() {
-        ExcelException exception = assertThrows(ExcelException.class, () -> excelWriter.writeCell(0, null, 0));
+        ValidatorException exception = assertThrows(ValidatorException.class, () -> excelWriter.writeCell(0, null, 0));
 
         assertEquals(ErrorMessage.C02.getValue(), exception.getMessage());
     }
@@ -79,7 +79,7 @@ class ExcelWriterTest {
     void writeCell_String_ShouldThrowException_ValueIsNull() {
         XSSFWorkbook workbook = createWorkbookWithOneSheet(DEFAULT_SHEET_NAME);
         Row row = workbook.getSheet(DEFAULT_SHEET_NAME).getRow(0);
-        ExcelException exception = assertThrows(ExcelException.class, () -> excelWriter.writeCell((Integer) null, row, 0));
+        ValidatorException exception = assertThrows(ValidatorException.class, () -> excelWriter.writeCell((Integer) null, row, 0));
 
         assertEquals(ErrorMessage.C02.getValue(), exception.getMessage());
     }
@@ -89,7 +89,7 @@ class ExcelWriterTest {
     void writeCell_String_ShouldThrowException_IndexIsNull() {
         XSSFWorkbook workbook = createWorkbookWithOneSheet(DEFAULT_SHEET_NAME);
         Row row = workbook.getSheet(DEFAULT_SHEET_NAME).getRow(0);
-        ExcelException exception = assertThrows(ExcelException.class, () -> excelWriter.writeCell(10, row, null));
+        ValidatorException exception = assertThrows(ValidatorException.class, () -> excelWriter.writeCell(10, row, null));
 
         assertEquals(ErrorMessage.C02.getValue(), exception.getMessage());
     }
@@ -97,7 +97,7 @@ class ExcelWriterTest {
     @Test
     @DisplayName("Write cell - String - Should throw exception - Row is null")
     void writeCell_String_ShouldThrowException_RowIsNull() {
-        ExcelException exception = assertThrows(ExcelException.class, () -> excelWriter.writeCell(0, null, 0));
+        ValidatorException exception = assertThrows(ValidatorException.class, () -> excelWriter.writeCell(0, null, 0));
 
         assertEquals(ErrorMessage.C02.getValue(), exception.getMessage());
     }
@@ -128,7 +128,7 @@ class ExcelWriterTest {
     @Test
     @DisplayName("Create Row - Should throw exception - Row is null")
     void createRow_ShouldThrowException_RowIsNull() {
-        ExcelException exception = assertThrows(ExcelException.class, () -> excelWriter.createRow(null));
+        ValidatorException exception = assertThrows(ValidatorException.class, () -> excelWriter.createRow(null));
 
         assertEquals(ErrorMessage.C02.getValue(), exception.getMessage());
     }

@@ -21,6 +21,4 @@ public interface EmployeeService {
 
     void deleteEmployee(final Long employeeId);
     void updateEmployee(final EmployeeForm employee, final Long id);
-
-    EmployeeEntity getEmployeeWithDates(final Long id, final Integer year);
 }
