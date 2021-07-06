@@ -1,11 +1,9 @@
 package com.report.domain.entity;
 
-import java.util.Objects;
-import java.util.Set;
+import lombok.*;
 
 import javax.persistence.*;
-
-import lombok.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "employees")
@@ -41,21 +39,4 @@ public class EmployeeEntity {
     @OneToMany(mappedBy = "employee")
     private Set<DateEntity> dates;
 
-    @Override
-    public boolean equals(Object o) {
-	if (this == o)
-	    return true;
-	if (o == null || getClass() != o.getClass())
-	    return false;
-	EmployeeEntity that = (EmployeeEntity) o;
-	return id == that.id && countOfVacation == that.countOfVacation
-		&& countOfChildrenCare == that.countOfChildrenCare && name.equals(that.name)
-		&& lastname.equals(that.lastname) && regularPost.equals(that.regularPost)
-		&& position.equals(that.position);
-    }
-
-    @Override
-    public int hashCode() {
-	return Objects.hash(id, name, lastname, regularPost, countOfVacation, countOfChildrenCare, position);
-    }
 }

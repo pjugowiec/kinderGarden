@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 
 import static com.helpers.ReportDataGenerator.DEFAULT_SHEET_NAME;
 import static com.helpers.ReportDataGenerator.createWorkbookWithOneSheet;
@@ -104,7 +105,7 @@ class ExcelWriterTest {
 
     @Test
     @DisplayName("Save workbook - Should return ByteArrayOutputStream")
-    void saveWorkbook_ShouldReturnByteArrayOutputStream() {
+    void saveWorkbook_ShouldReturnByteArrayOutputStream() throws IOException {
         XSSFWorkbook workbook = createWorkbookWithOneSheet(DEFAULT_SHEET_NAME);
 
         ByteArrayOutputStream result = excelWriter.saveWorkbook(workbook);

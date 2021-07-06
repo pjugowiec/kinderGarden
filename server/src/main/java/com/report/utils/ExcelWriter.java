@@ -5,6 +5,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 
 public interface ExcelWriter {
 
@@ -14,5 +15,5 @@ public interface ExcelWriter {
 
     ExcelWriter writeCell(final String value, final Row row, final Integer index);
 
-    ByteArrayOutputStream saveWorkbook(final XSSFWorkbook workbook);
+    ByteArrayOutputStream saveWorkbook(final XSSFWorkbook workbook) throws IOException;
 }

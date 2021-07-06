@@ -1,6 +1,7 @@
 package com.report.service.impl;
 
 import com.common.exception.ExcelException;
+import com.common.exception.NotFoundException;
 import com.common.model.ErrorMessage;
 import com.google.common.collect.ImmutableMap;
 import com.report.domain.enums.DateType;
@@ -38,13 +39,13 @@ public class ReportServiceImpl implements ReportService {
 
     @Override
     public ReportModel generateEmployeeReport(final Long employeeId) {
-        final Integer currentYear = LocalDate.now().getYear();
+        final int currentYear = LocalDate.now().getYear();
         final EmployeeForm employeeForm = employeeService.findById(employeeId);
         final Collection<DateData> dates = dateService.getDatesForEmployee(employeeId).stream()
                 .filter(v -> v.getDate().getYear() == currentYear)
                 .collect(Collectors.toList());
         
-        if (dates.isEmpty()) throw new ExcelException(ErrorMessage.EXL02);
+        if (dates.isEmpty()) throw new NotFoundException(ErrorMessage.EXL02);
 
         try {
             XSSFWorkbook reportWorkBook = excelUtil.getWorkbook(reportConfiguration.getResource());
@@ -59,7 +60,7 @@ public class ReportServiceImpl implements ReportService {
                     .build();
 
         } catch (IOException ex) {
-            throw new ExcelException(ErrorMessage.EXL01);
+            throw new ExcelException(ErrorMessage.EXL03);
         }
     }
 

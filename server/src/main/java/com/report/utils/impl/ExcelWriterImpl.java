@@ -37,13 +37,10 @@ public class ExcelWriterImpl implements ExcelWriter {
     }
 
     @Override
-    public ByteArrayOutputStream saveWorkbook(final XSSFWorkbook workbook) {
-        try (ByteArrayOutputStream bos = new ByteArrayOutputStream()) {
+    public ByteArrayOutputStream saveWorkbook(final XSSFWorkbook workbook) throws IOException {
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
             workbook.write(bos);
             return bos;
-        } catch (IOException e) {
-            throw new ExcelException(ErrorMessage.EXL03);
-        }
     }
 
     private Integer incrementByOne(final Integer value) {

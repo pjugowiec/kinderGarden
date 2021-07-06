@@ -24,8 +24,8 @@ public class ReportController {
         final ReportModel reportExcel = reportService.generateEmployeeReport(id);
 
         return ResponseEntity.ok()
-                .headers(ResponseUtil.createDownloadFileHeaders(reportExcel.getFileName() + ".xlsx"))
-                .body(new ByteArrayResource(reportExcel.getFile().toByteArray())
+                .headers(ResponseUtil.createDownloadFileHeaders(reportExcel.fileName + ".xlsx"))
+                .body(new ByteArrayResource(reportExcel.file.toByteArray())
                 );
 
     }
