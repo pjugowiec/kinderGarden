@@ -65,6 +65,10 @@ task unitTest(type: Test) {
 integrationTest.dependsOn unitTest
 test.dependsOn integrationTest
 
+bootRun {
+    jvmArgs = ["-Dspring.profiles.active=local"]
+
+}
 
 class Version {
     static String spring = '2.5.1'

@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import sql.SqlDateInit;
 
 import static com.common.model.ResourceUrl.REPORT;
-import static com.helpers.CommonValues.API_PREFIX;
 import static com.helpers.CommonValues.ID_PATH;
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -27,7 +26,7 @@ class ReportControllerTest extends ControllerTemplate {
     void getReportByEmployee_GET_ShouldGenerateReport() {
 
         Response response = given(requestSpecification)
-                .get(API_PREFIX + REPORT + ID_PATH, 1000L)
+                .get(REPORT + ID_PATH, 1000L)
                 .then()
                 .assertThat()
                 .statusCode(HttpStatus.OK.value())
@@ -44,7 +43,7 @@ class ReportControllerTest extends ControllerTemplate {
     @DisplayName("Get report by employee - Should throw exception - Dates are empty")
     void getReportByEmployee_ShouldThrowException_DatesAreEmpty() {
         given(requestSpecification)
-                .get(API_PREFIX + REPORT + ID_PATH, 1002L)
+                .get(REPORT + ID_PATH, 1002L)
                 .then()
                 .assertThat()
                 .statusCode(HttpStatus.BAD_REQUEST.value());

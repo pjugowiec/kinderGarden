@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
 
 import static com.common.model.ResourceUrl.EMPLOYEE;
-import static com.helpers.CommonValues.API_PREFIX;
 import static com.helpers.ReportDataGenerator.createEmployeeForm;
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -25,7 +24,7 @@ class EmployeeModelValidatorAnnotationTest extends ControllerTemplate {
 
         ErrorResponse response = given(requestSpecification)
                 .body(employeeForm)
-                .post(API_PREFIX + EMPLOYEE)
+                .post(EMPLOYEE)
                 .then()
                 .assertThat()
                 .statusCode(HttpStatus.BAD_REQUEST.value())
@@ -45,7 +44,7 @@ class EmployeeModelValidatorAnnotationTest extends ControllerTemplate {
 
         ErrorResponse response = given(requestSpecification)
                 .body(employeeForm)
-                .post(API_PREFIX + EMPLOYEE)
+                .post(EMPLOYEE)
                 .then()
                 .assertThat()
                 .statusCode(HttpStatus.BAD_REQUEST.value())
@@ -65,7 +64,7 @@ class EmployeeModelValidatorAnnotationTest extends ControllerTemplate {
 
         ErrorResponse response = given(requestSpecification)
                 .body(employeeForm)
-                .post(API_PREFIX + EMPLOYEE)
+                .post(EMPLOYEE)
                 .then()
                 .assertThat()
                 .statusCode(HttpStatus.BAD_REQUEST.value())
@@ -85,7 +84,7 @@ class EmployeeModelValidatorAnnotationTest extends ControllerTemplate {
 
         ErrorResponse response = given(requestSpecification)
                 .body(employeeForm)
-                .post(API_PREFIX + EMPLOYEE)
+                .post(EMPLOYEE)
                 .then()
                 .assertThat()
                 .statusCode(HttpStatus.BAD_REQUEST.value())
@@ -105,7 +104,7 @@ class EmployeeModelValidatorAnnotationTest extends ControllerTemplate {
 
         ErrorResponse response = given(requestSpecification)
                 .body(employeeForm)
-                .post(API_PREFIX + EMPLOYEE)
+                .post(EMPLOYEE)
                 .then()
                 .assertThat()
                 .statusCode(HttpStatus.BAD_REQUEST.value())
@@ -125,7 +124,7 @@ class EmployeeModelValidatorAnnotationTest extends ControllerTemplate {
 
         ErrorResponse response = given(requestSpecification)
                 .body(employeeForm)
-                .post(API_PREFIX + EMPLOYEE)
+                .post(EMPLOYEE)
                 .then()
                 .assertThat()
                 .statusCode(HttpStatus.BAD_REQUEST.value())
@@ -145,7 +144,7 @@ class EmployeeModelValidatorAnnotationTest extends ControllerTemplate {
 
         ErrorResponse response = given(requestSpecification)
                 .body(employeeForm)
-                .post(API_PREFIX + EMPLOYEE)
+                .post(EMPLOYEE)
                 .then()
                 .assertThat()
                 .statusCode(HttpStatus.BAD_REQUEST.value())
@@ -165,7 +164,7 @@ class EmployeeModelValidatorAnnotationTest extends ControllerTemplate {
 
         ErrorResponse response = given(requestSpecification)
                 .body(employeeForm)
-                .post(API_PREFIX + EMPLOYEE)
+                .post(EMPLOYEE)
                 .then()
                 .assertThat()
                 .statusCode(HttpStatus.BAD_REQUEST.value())
@@ -185,7 +184,7 @@ class EmployeeModelValidatorAnnotationTest extends ControllerTemplate {
 
         ErrorResponse response = given(requestSpecification)
                 .body(employeeForm)
-                .post(API_PREFIX + EMPLOYEE)
+                .post(EMPLOYEE)
                 .then()
                 .assertThat()
                 .statusCode(HttpStatus.BAD_REQUEST.value())
@@ -205,7 +204,7 @@ class EmployeeModelValidatorAnnotationTest extends ControllerTemplate {
 
         ErrorResponse response = given(requestSpecification)
                 .body(employeeForm)
-                .post(API_PREFIX + EMPLOYEE)
+                .post(EMPLOYEE)
                 .then()
                 .assertThat()
                 .statusCode(HttpStatus.BAD_REQUEST.value())
@@ -225,7 +224,7 @@ class EmployeeModelValidatorAnnotationTest extends ControllerTemplate {
 
         ErrorResponse response = given(requestSpecification)
                 .body(employeeForm)
-                .post(API_PREFIX + EMPLOYEE)
+                .post(EMPLOYEE)
                 .then()
                 .assertThat()
                 .statusCode(HttpStatus.BAD_REQUEST.value())

@@ -37,7 +37,7 @@ class EmployeeControllerTest extends ControllerTemplate {
     void getEmployees_GET_ShouldReturnAllEmployees() {
 
         given(requestSpecification)
-                .get(API_PREFIX + EMPLOYEE)
+                .get( EMPLOYEE)
                 .then()
                 .assertThat()
                 .statusCode(HttpStatus.OK.value())
@@ -51,7 +51,7 @@ class EmployeeControllerTest extends ControllerTemplate {
 
         given(requestSpecification)
                 .body(employeeForm)
-                .post(API_PREFIX + EMPLOYEE)
+                .post( EMPLOYEE)
                 .then()
                 .assertThat()
                 .statusCode(HttpStatus.OK.value());
@@ -77,7 +77,7 @@ class EmployeeControllerTest extends ControllerTemplate {
     @DisplayName("Find employee by id - should return employee")
     void findEmployeeById_ShouldReturnEmployee() {
         EmployeeForm response = given(requestSpecification)
-                .get(API_PREFIX + EMPLOYEE + ID_PATH, 1000L)
+                .get( EMPLOYEE + ID_PATH, 1000L)
                 .then()
                 .assertThat()
                 .statusCode(HttpStatus.OK.value())
@@ -97,7 +97,7 @@ class EmployeeControllerTest extends ControllerTemplate {
     @DisplayName("Find employee by id - should throw exception")
     void findEmployeeById_ShouldThrowException() {
         ErrorResponse response = given(requestSpecification)
-                .get(API_PREFIX + EMPLOYEE + ID_PATH, 1L)
+                .get( EMPLOYEE + ID_PATH, 1L)
                 .then()
                 .assertThat()
                 .statusCode(HttpStatus.BAD_REQUEST.value())
@@ -116,7 +116,7 @@ class EmployeeControllerTest extends ControllerTemplate {
         final long repoCount = employeeRepository.count();
 
         given(requestSpecification)
-                .delete(API_PREFIX + EMPLOYEE + ID_PATH, 1000L)
+                .delete( EMPLOYEE + ID_PATH, 1000L)
                 .then()
                 .assertThat()
                 .statusCode(HttpStatus.OK.value());
@@ -133,7 +133,7 @@ class EmployeeControllerTest extends ControllerTemplate {
         final long repoCount = employeeRepository.count();
 
         ErrorResponse response = given(requestSpecification)
-                .delete(API_PREFIX + EMPLOYEE + ID_PATH, 1L)
+                .delete( EMPLOYEE + ID_PATH, 1L)
                 .then()
                 .assertThat()
                 .statusCode(HttpStatus.BAD_REQUEST.value())
@@ -154,7 +154,7 @@ class EmployeeControllerTest extends ControllerTemplate {
 
         given(requestSpecification)
                 .body(employeeForm)
-                .put(API_PREFIX + EMPLOYEE + ID_PATH, 1000L)
+                .put( EMPLOYEE + ID_PATH, 1000L)
                 .then()
                 .assertThat()
                 .statusCode(HttpStatus.OK.value());
@@ -180,7 +180,7 @@ class EmployeeControllerTest extends ControllerTemplate {
 
         ErrorResponse response = given(requestSpecification)
                 .body(employeeForm)
-                .put(API_PREFIX + EMPLOYEE + ID_PATH, 1L)
+                .put( EMPLOYEE + ID_PATH, 1L)
                 .then()
                 .assertThat()
                 .statusCode(HttpStatus.BAD_REQUEST.value())

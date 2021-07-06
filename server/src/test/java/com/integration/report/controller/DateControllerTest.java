@@ -37,7 +37,7 @@ class DateControllerTest extends ControllerTemplate {
     void getDatesForEmployee_GET_ShouldReturnDatesForEmployee() {
 
         given(requestSpecification)
-                .get(API_PREFIX + DATE + ID_PATH, 1000L)
+                .get( DATE + ID_PATH, 1000L)
                 .then()
                 .assertThat()
                 .statusCode(HttpStatus.OK.value())
@@ -51,7 +51,7 @@ class DateControllerTest extends ControllerTemplate {
 
         given(requestSpecification)
                 .body(datesData)
-                .put(API_PREFIX + DATE + ID_PATH, 1000L)
+                .put( DATE + ID_PATH, 1000L)
                 .then()
                 .assertThat()
                 .statusCode(HttpStatus.OK.value());
@@ -71,7 +71,7 @@ class DateControllerTest extends ControllerTemplate {
 
         ErrorResponse response = given(requestSpecification)
                 .body(datesData)
-                .put(API_PREFIX + DATE + ID_PATH, 100000L)
+                .put( DATE + ID_PATH, 100000L)
                 .then()
                 .assertThat()
                 .statusCode(HttpStatus.BAD_REQUEST.value())
