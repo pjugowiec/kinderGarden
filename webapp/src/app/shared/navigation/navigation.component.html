@@ -1,0 +1,11 @@
+<mat-toolbar color="primary" class="toolbar">
+  <span class="title">{{'TITLE' | translate}}</span>
+  <div class="settings">
+    <button mat-icon-button [matMenuTriggerFor]="langMenu">
+      <mat-icon>language</mat-icon>
+    </button>
+    <mat-menu #langMenu="matMenu" class="lang-menu">
+      <span mat-menu-item (click)="changeLang('pl')">{{'GENERAL.LANGS.PL' | translate}}</span>
+    </mat-menu>
+  </div>
+</mat-toolbar>

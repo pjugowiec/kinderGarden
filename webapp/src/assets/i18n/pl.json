@@ -1,0 +1,25 @@
+{
+    "TITLE": "Zarządzenie urlopami",
+    "GENERAL": {
+        "LANGS": {
+            "PL": "Polski"
+        },
+        "FILTER_NAME": "Filtracja",
+        "LP": "Lp."
+
+    },
+
+    "MESSAGE": {
+        "SHORT_CONFIRM": "ok",
+        "WRONG_LANGUAGE": "Nie znaleziono takiego języka"
+    },
+
+    "EMPLOYEE_PAGE": {
+         "NAME": "Imie",
+         "LAST_NAME": "Nazwisko",
+         "POSITION": "Stanowisko",
+         "REGULAR_POST": "Etat",
+         "COUNT_OF_CHILDREN_CARE": "Opieka",
+         "COUNT_OF_VACATION": "Dni wolne"
+    }
+}
