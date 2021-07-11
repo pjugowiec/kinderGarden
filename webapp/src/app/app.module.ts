@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { ViewsModule } from './views/views.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 export function createTranslateLoader(http: HttpClient) {

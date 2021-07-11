@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { TranslateService } from '@ngx-translate/core';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -31,7 +32,8 @@ export class ConfirmDialogComponent {
             onError: (error: any) => void;
         },
         private _dialogRef: MatDialogRef<ConfirmDialogComponent>,
-        private _snackBarService: MatSnackBar) {
+        private _snackBarService: MatSnackBar
+        ) {
         this._title = data.title;
         this._message = data.message;
         this._confirmButtonLabel = data.confirmButtonLabel;
@@ -72,6 +74,7 @@ export class ConfirmDialogComponent {
                     } else {
                         this._snackBarService.open(this._error, 'Ok', {duration: 3000});
                     }
+                    this._dialogRef.close(false)
                 }
             );
         } else {

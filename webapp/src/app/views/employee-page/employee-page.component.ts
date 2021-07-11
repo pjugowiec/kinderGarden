@@ -1,9 +1,14 @@
-import { DataSource } from '@angular/cdk/table';
+
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
+import { TranslateService } from '@ngx-translate/core';
 import { take } from 'rxjs/operators';
 import { Employee } from 'src/app/models/employee/employee';
 import { EmployeeRestService } from 'src/app/services/rest/employee-rest.service';
+import { ConfirmDialogComponent } from 'src/app/shared/confirm-dialog/confirm-dialog.component';
+import { EmployeeFormComponent } from './employee-form/employee-form.component';
 
 @Component({
 	selector: 'app-employee-page',
@@ -19,7 +24,8 @@ export class EmployeePageComponent implements OnInit {
 		'Position',
 		'RegularPost',
 		'CountOfChildrenCare',
-		'CountOfVacation'
+		'CountOfVacation',
+		'Actions'
 	];
 
 	get columns(): Array<string> {
@@ -32,46 +38,87 @@ export class EmployeePageComponent implements OnInit {
 		return this._dataSource;
 	}
 
-	constructor(private _employeeRestSerivce: EmployeeRestService) { }
+	constructor(
+		private _employeeRestSerivce: EmployeeRestService,
+		private _translationService: TranslateService,
+		private _snackBarService: MatSnackBar,
+		private _dialog: MatDialog
+	) { }
 
 	ngOnInit(): void {
-		this.getEmployees();
+		this.getData();
 	}
 
-	private getEmployees(): void {
+	private getData(): void {
 		this._employeeRestSerivce
 			.queryGet()
 			.pipe(take(1))
-			.subscribe((response: Array<Employee>)=> {
+			.subscribe((response: Array<Employee>) => {
 				this._dataSource = new MatTableDataSource(response);
-			});
+			}, (error) => {
+				this._snackBarService.open(
+					this._translationService.instant('ERRORS.GET_DATA'),
+					this._translationService.instant('MESSAGE.SHORT_CONFIRM'),
+					{ duration: 2000 })
+			})
 	}
 
 	public applyFilter(event: Event) {
 		const filterValue = (event.target as HTMLInputElement).value;
 		this._dataSource.filter = filterValue.trim().toLowerCase();
 	}
+
+	public openDeleteForm(id: number): void {
+		this._dialog.open(ConfirmDialogComponent, {
+			data: {
+				title: 'EMPLOYEE_PAGE.DELETE_EMPLOYEE_TITLE',
+				message: 'EMPLOYEE_PAGE.DELETE_EMPLOYEE',
+				onConfirm: this._employeeRestSerivce.queryDelete(id),
+				error: this._translationService.instant('ERRORS.DELETE')
+			}
+		}).afterClosed()
+			.subscribe((response) => {
+				if (response) {
+					this._snackBarService.open(
+						this._translationService.instant('GENERAL.SUCCESS_DELETE'),
+						this._translationService.instant('MESSAGE.SHORT_CONFIRM'),
+						{ duration: 4000 }
+					);
+					this.getData();
+				}
+			});
+	}
+
+	public openEditForm(id: number): void {
+
+		this._employeeRestSerivce.queryGetById(id)
+			.pipe(take(1))
+			.subscribe(response => {
+				this._dialog.open(EmployeeFormComponent, {
+					data: {
+						editMode: true,
+						employee: response
+					}
+				}).afterClosed().subscribe((response: boolean) => {
+					this.getData();
+				});
+			},
+				(error) => {
+					this._snackBarService.open(
+						this._translationService.instant('ERRORS.GET_DATA'),
+						this._translationService.instant('MESSAGE.SHORT_CONFIRM'),
+						{ duration: 2000 })
+				});
+	}
+
+	public openAddForm(): void {
+		this._dialog.open(EmployeeFormComponent, {
+			data: {
+				editMode: false
+			}
+		}).afterClosed().subscribe((response: boolean) => {
+			this.getData();
+		});
+	}
+
 }
-
-
-
-
-export interface PeriodicElement {
-	name: string;
-	position: number;
-	weight: number;
-	symbol: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-	{ position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-	{ position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-	{ position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-	{ position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-	{ position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-	{ position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-	{ position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-	{ position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-	{ position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-	{ position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
-];

@@ -3,6 +3,12 @@
 	<input matInput (keyup)="applyFilter($event)" #input>
 </mat-form-field>
 
+<div class="button-fab">
+	<button mat-fab color="primary" (click)="openAddForm()">
+		<mat-icon>add</mat-icon>
+	</button>
+</div>
+
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
 	<ng-container matColumnDef="Lp">
@@ -17,27 +23,36 @@
 
 	<ng-container matColumnDef="LastName">
 		<th mat-header-cell *matHeaderCellDef> {{'EMPLOYEE_PAGE.LAST_NAME' | translate}} </th>
-		<td mat-cell *matCellDef="let element"> {{element.name}} </td>
+		<td mat-cell *matCellDef="let element"> {{element.lastname}} </td>
 	</ng-container>
 
 	<ng-container matColumnDef="Position">
 		<th mat-header-cell *matHeaderCellDef> {{'EMPLOYEE_PAGE.POSITION' | translate}} </th>
-		<td mat-cell *matCellDef="let element"> {{element.name}} </td>
+		<td mat-cell *matCellDef="let element"> {{element.position}} </td>
 	</ng-container>
 
 	<ng-container matColumnDef="RegularPost">
 		<th mat-header-cell *matHeaderCellDef> {{'EMPLOYEE_PAGE.REGULAR_POST' | translate}} </th>
-		<td mat-cell *matCellDef="let element"> {{element.name}} </td>
+		<td mat-cell *matCellDef="let element"> {{element.regularPost}} </td>
 	</ng-container>
 
 	<ng-container matColumnDef="CountOfChildrenCare">
 		<th mat-header-cell *matHeaderCellDef> {{'EMPLOYEE_PAGE.COUNT_OF_CHILDREN_CARE' | translate}} </th>
-		<td mat-cell *matCellDef="let element"> {{element.name}} </td>
+		<td mat-cell *matCellDef="let element"> {{element.countOfChildrenCare}} </td>
 	</ng-container>
 
 	<ng-container matColumnDef="CountOfVacation">
 		<th mat-header-cell *matHeaderCellDef> {{'EMPLOYEE_PAGE.COUNT_OF_VACATION' | translate}} </th>
-		<td mat-cell *matCellDef="let element"> {{element.name}} </td>
+		<td mat-cell *matCellDef="let element"> {{element.countOfVacation}} </td>
+	</ng-container>
+
+	<ng-container matColumnDef="Actions">
+		<th mat-header-cell *matHeaderCellDef> {{'GENERAL.ACTIONS' | translate}} </th>
+		<td mat-cell *matCellDef="let element">
+			<mat-icon (click)="openEditForm(element.id)">edit</mat-icon>
+			<mat-icon (click)="openDeleteForm(element.id)">delete</mat-icon>
+			<mat-icon>calendar_today</mat-icon>
+		</td>
 	</ng-container>
 
 

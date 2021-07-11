@@ -21,4 +21,34 @@ export class EmployeeRestService extends RestService {
           method: Method.GET
         });
     }
+
+    queryPost(data: Employee): Observable<void> {
+        return this.request<void>({
+          url: `${EMPLOYEE_URL}`,
+          data: data,
+          method: Method.POST
+        });
+    }
+
+    queryDelete(id: number): Observable<void> {
+        return this.request<void>({
+          url: `${EMPLOYEE_URL}` + '/' + id,
+          method: Method.DELETE
+        });
+    }
+
+    queryPut(id: number, employee: Employee): Observable<void> {
+      return this.request<void>({
+        url: `${EMPLOYEE_URL}` + '/' + id,
+        data: employee,
+        method: Method.PUT
+      });
+  }
+
+    queryGetById(id: number): Observable<Employee> {
+      return this.request<Employee>({
+        url: `${EMPLOYEE_URL}` + '/' + id,
+        method: Method.GET
+      });
+  }
 }

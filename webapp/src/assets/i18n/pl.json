@@ -5,21 +5,41 @@
             "PL": "Polski"
         },
         "FILTER_NAME": "Filtracja",
-        "LP": "Lp."
-
+        "LP": "Lp.",
+        "ACTIONS": "Akcje",
+        "SUCCESS_DELETE": "Pomyśle usunięto",
+        "SUCCESS_SAVE": "Pomyśle zapisano",
+        "CANCEL": "Anuluj",
+        "DELETE": "Usuń",
+        "BACK": "Cofnij",
+        "CLEAR": "Wyczyść",
+        "SAVE": "Zapisz",
+        "FINAL_STEP": "Potwierdzenie"
     },
-
+    "ERRORS": {
+        "GET_DATA": "Nie udało się pobrać danych",
+        "DELETE": "Problem z usunięciem",
+        "SAVE": "Problem z zapisem",
+        "FORM": {
+            "MIN_0": "Minimalna wartość to 0",
+            "FIELD_REQUIRED": "Pole wymagane"
+        }
+    },
     "MESSAGE": {
         "SHORT_CONFIRM": "ok",
         "WRONG_LANGUAGE": "Nie znaleziono takiego języka"
     },
-
     "EMPLOYEE_PAGE": {
-         "NAME": "Imie",
-         "LAST_NAME": "Nazwisko",
-         "POSITION": "Stanowisko",
-         "REGULAR_POST": "Etat",
-         "COUNT_OF_CHILDREN_CARE": "Opieka",
-         "COUNT_OF_VACATION": "Dni wolne"
+        "EMPLOYEE_FORM_TITLE_ADD": "Dodawanie pracownika",
+        "EMPLOYEE_FORM_TITLE_EDIT": "Dodawanie pracownika",
+        "EMPLOYEE_FORM_DATA": "Dane pracownika",
+        "NAME": "Imie",
+        "LAST_NAME": "Nazwisko",
+        "POSITION": "Stanowisko",
+        "REGULAR_POST": "Etat",
+        "COUNT_OF_CHILDREN_CARE": "Opieka",
+        "COUNT_OF_VACATION": "Dni wolne",
+        "DELETE_EMPLOYEE": "Czy napewno chcesz usunąć pracownika?",
+        "DELETE_EMPLOYEE_TITLE": "Usuwanie pracownika"
     }
 }

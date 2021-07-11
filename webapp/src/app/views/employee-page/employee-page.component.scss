@@ -6,3 +6,13 @@ table {
     font-size: 14px;
     width: 100%;
   }
+
+  .button-fab {
+    z-index:5; 
+    position : fixed;
+    display : flex; 
+    align-self : flex-end;
+    bottom : 1%; 
+    margin-bottom : 68px; 
+    right: 4%
+  }
